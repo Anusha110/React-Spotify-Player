@@ -7,25 +7,17 @@ import {
 } from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import MusicService from '../../services/MusicService'
-import AlbumDetailsModel from '../models/AlbumDetailsModel'
+import AlbumDetailsModel from '../modelsv2/AlbumDetailsModel'
 import BrowseCategoriesModel from '../models/BrowseCategoriesModel'
-import CategoryPlaylistsModel from '../models/CategoryPlaylistsModel'
-import FeaturedPlaylistsModel from '../models/FeaturesPlaylistsModel'
+import CategoryPlaylistsModel from '../modelsv2/CategoryPlaylistsModel'
+import FeaturedPlaylistsModel from '../models/FeaturedPlaylistsModel'
 import NewReleasesModel from '../models/NewReleasesModel'
-import PlaylistDetailsModel from '../models/PlaylistDetailsModel'
-import UserPlaylistsModel from '../models/UsersPlaylistsModel'
-import YourMusicModel from '../models/YourMusicModel'
+import PlaylistDetailsModel from '../modelsv2/PlaylistDetailsModel'
+import UserPlaylistsModel from '../modelsv2/UsersPlaylistsModel'
+import YourMusicModel from '../modelsv2/YourMusicModel'
 import {
-   CountryRequestType,
-   FormattedGetFeaturedPlaylistsResponseType,
-   FormattedGetBrowseCategoriesResponseType,
-   GetFeaturedPlaylistsRequestType,
-   GetFeaturedPlaylistsResponseType,
-   GetNewReleasesResponseType,
-   GetBrowseCategoriesResponseType,
    FormattedGetPlaylistDetailsResponseType,
    GetPlaylistDetailsResponseType,
-   IdRequestType,
    FormattedGetAlbumDetailsResponseType,
    GetAlbumDetailsResponseType,
    FormattedGetCategoryPlaylistsResponseType,
@@ -36,6 +28,18 @@ import {
    FormattedGetUserPlaylistsResponseType,
    GetUserPlaylistsResponseType
 } from '../typesv2'
+
+import {
+   GetFeaturedPlaylistsRequestType,
+   GetFeaturedPlaylistsResponseType,
+   GetBrowseCategoriesResponseType,
+   GetNewReleasesResponseType,
+   FormattedGetFeaturedPlaylistsResponseType,
+   FormattedGetBrowseCategoriesResponseType,
+   FormattedGetNewReleasesResponseType,
+   CountryRequestType,
+   IdRequestType
+} from '../../stores/types'
 
 export class MusicStore {
    musicService!: MusicService
@@ -51,7 +55,7 @@ export class MusicStore {
    @observable getBrowseCategoriesApiError!: string
 
    @observable
-   newReleasesModel!: GetNewReleasesResponseType | null
+   newReleasesModel!: FormattedGetNewReleasesResponseType | null
    @observable getNewReleasesApiStatus!: APIStatus
    @observable getNewReleasesApiError!: string
 
@@ -140,7 +144,6 @@ export class MusicStore {
       response: GetFeaturedPlaylistsResponseType | null
    ): void => {
       if (response) {
-         console.log(response, 'features playlists response')
          this.featuredPlaylistsModel = new FeaturedPlaylistsModel(response)
       }
    }
@@ -187,6 +190,7 @@ export class MusicStore {
       this.setGetBrowseCategoriesApiStatus(API_FETCHING)
       const getBrowseCategoriesResponse: any = await this.musicService.getBrowseCategories()
       const jsonData = await getBrowseCategoriesResponse.json()
+      console.log(getBrowseCategoriesResponse, 'getBrowseCategoriesResponse')
       if (getBrowseCategoriesResponse.ok) {
          this.setGetBrowseCategoriesResponse(jsonData)
          this.setGetBrowseCategoriesApiStatus(API_SUCCESS)
@@ -394,9 +398,7 @@ export class MusicStore {
       const getUserPlaylistsApiResponse: any = await this.musicService.getUserPlaylists(
          requestObject
       )
-      console.log('userplaylists repsonse', getUserPlaylistsApiResponse)
       const jsonData = await getUserPlaylistsApiResponse.json()
-      console.log('jsonData', jsonData)
       if (getUserPlaylistsApiResponse.ok) {
          this.setGetUserPlaylistsApiResponse(jsonData)
          this.setGetUserPlaylistsApiStatus(API_SUCCESS)

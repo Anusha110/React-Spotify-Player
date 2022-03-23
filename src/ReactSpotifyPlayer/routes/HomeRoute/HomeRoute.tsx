@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react'
-import Cookies from 'js-cookie'
 import { observer } from 'mobx-react'
-import { useHistory, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
-import SideBar from '../../components/SideBar/SideBar'
 import {
    MusicStoreContext,
    UserStoreContext
 } from '../../../Common/stores/StoresContext'
+
 import SpotifyItem from '../../components/SpotifyItem/SpotifyItem'
 import LoadingView from '../../components/LoadingView/LoadingView'
+import SideBar from '../../components/NavBar/NavBar'
 import {
    HomeContainer,
    HomeContentContainer,
@@ -19,9 +19,9 @@ import {
    SpotifyItemsContainer
 } from './styledComponents'
 
+const i18nHomePath = 'reactSpotifyPlayer:home.'
+
 const HomeRoute = observer(() => {
-   const history = useHistory()
-   const location = useLocation()
    const { getUserInformation, userInformationModel } = useContext(
       UserStoreContext
    )
@@ -45,55 +45,66 @@ const HomeRoute = observer(() => {
 
    useEffect(() => {
       if (userInformationModel) {
-         getFeaturedPlaylists({
+         const featuredPlaylistRequestObj = {
             country: userInformationModel.country,
-            timestamp: userInformationModel?.country
-         })
+            timestamp: userInformationModel.country
+         }
+         getFeaturedPlaylists(featuredPlaylistRequestObj)
 
-         getNewReleases({
+         const newReleasesRequestObj = {
             country: userInformationModel.country
-         })
+         }
+         getNewReleases(newReleasesRequestObj)
       }
-   }, [userInformationModel?.country])
+   }, [userInformationModel?.country]) // Doubt: Why do we need to put this
 
    const getFeaturedPlaylistsView = () => {
       if (featuredPlaylistsModel) {
-         const playlistItems = featuredPlaylistsModel.playlists.items
-         return playlistItems.map(eachPlaylist => (
-            <SpotifyItem
-               key={eachPlaylist.id}
-               itemDetails={eachPlaylist}
-               redirectPath={`/users/spotify/playlists/${eachPlaylist.id}/`}
-            />
-         ))
+         const { playlists } = featuredPlaylistsModel
+         return playlists.map(eachPlaylist => {
+            const { id } = eachPlaylist
+            return (
+               <SpotifyItem
+                  key={id}
+                  itemDetails={eachPlaylist}
+                  redirectPath={`/playlists/${id}/`}
+               />
+            )
+         })
       }
       return null
    }
 
    const getBrowseCategoriesView = () => {
       if (browseCategoriesModel) {
-         const categories = browseCategoriesModel.categories.items
-         return categories.map(eachCategory => (
-            <SpotifyItem
-               key={eachCategory.id}
-               itemDetails={eachCategory}
-               redirectPath={`/browse/categories/${eachCategory.id}/playlists?country=${userInformationModel?.country}/`}
-            />
-         ))
+         const { categories } = browseCategoriesModel
+         return categories.map(eachCategory => {
+            const { id } = eachCategory
+            return (
+               <SpotifyItem
+                  key={id}
+                  itemDetails={eachCategory}
+                  redirectPath={`/categories/${id}/playlists?country=${userInformationModel?.country}/`} // is this fine?
+               />
+            )
+         })
       }
       return null
    }
 
    const getNewReleasesView = () => {
       if (newReleasesModel) {
-         const albums = newReleasesModel.albums.items
-         return albums.map(eachAlbum => (
-            <SpotifyItem
-               key={eachAlbum.id}
-               itemDetails={eachAlbum}
-               redirectPath={`/albums/${eachAlbum.id}/`}
-            />
-         ))
+         const { albums } = newReleasesModel
+         return albums.map(eachAlbum => {
+            const { id } = eachAlbum
+            return (
+               <SpotifyItem
+                  key={id}
+                  itemDetails={eachAlbum}
+                  redirectPath={`/albums/${id}/`}
+               />
+            )
+         })
       }
       return null
    }
@@ -109,16 +120,17 @@ const HomeRoute = observer(() => {
       <HomeContainer>
          <SideBar />
          <HomeContentContainer>
+            {featuredPlaylistsModel &&
+               renderHomeSection(
+                  featuredPlaylistsModel.message,
+                  getFeaturedPlaylistsView
+               )}
             {renderHomeSection(
-               t('reactSpotifyPlayer:home.featuresPlaylistsSection'),
-               getFeaturedPlaylistsView
-            )}
-            {renderHomeSection(
-               t('reactSpotifyPlayer:home.browseCategoriesSection'),
+               t(`${i18nHomePath}browseCategoriesSection`),
                getBrowseCategoriesView
             )}
             {renderHomeSection(
-               t('reactSpotifyPlayer:home.newReleasesSection'),
+               t(`${i18nHomePath}newReleasesSection`),
                getNewReleasesView
             )}
          </HomeContentContainer>
@@ -146,19 +158,3 @@ const HomeRoute = observer(() => {
 })
 
 export default HomeRoute
-
-// <IconController renderIcon={(args)=><PhoneIcon {...props}/>}/>
-// <IconController renderIcon={(props)=><XiCOn {...props}/>}/>
-
-// <IconController renderIcon={(props)=><YIcon {...props}/>}/>
-
-// <IconController renderIcon={(props)=><PhoneIcon {...props}/>}/>
-
-//    <IconController>
-//       <PhoneIcon/>
-//    </IconController>
-
-// return
-// <div>
-//    {renderIcon({color; blue, })}
-// </div>

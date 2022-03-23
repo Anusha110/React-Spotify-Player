@@ -140,3 +140,19 @@ const SideBar = observer(() => {
 })
 
 export default withRouter(SideBar)
+
+// <IconController renderIcon={(args)=><PhoneIcon {...props}/>}/>
+// <IconController renderIcon={(props)=><XiCOn {...props}/>}/>
+
+// <IconController renderIcon={(props)=><YIcon {...props}/>}/>
+
+// <IconController renderIcon={(props)=><PhoneIcon {...props}/>}/>
+
+//    <IconController>
+//       <PhoneIcon/>
+//    </IconController>
+
+// return
+// <div>
+//    {renderIcon({color; blue, })}
+// </div>

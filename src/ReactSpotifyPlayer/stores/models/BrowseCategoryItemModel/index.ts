@@ -1,14 +1,16 @@
-import { BrowseCategoryItemType, ImageType } from '../../typesv2'
+import { BrowseCategoryItemType, ImageType } from '../../types'
 import ImageModel from '../ImageModel'
-import SpotifyItemModel from '../SpotifyItemModel'
 
-class BrowseCategoryItemModel extends SpotifyItemModel {
+class BrowseCategoryItemModel {
+   id: string
+   name: string
    images: ImageType[]
 
    constructor(category: BrowseCategoryItemType) {
-      super(category)
+      const { id, name, icons } = category
 
-      const { icons } = category
+      this.id = id
+      this.name = name
       this.images = icons.map(eachIcon => new ImageModel(eachIcon))
    }
 }

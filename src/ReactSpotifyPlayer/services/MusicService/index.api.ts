@@ -2,19 +2,22 @@ import { create, ApisauceInstance } from 'apisauce'
 import moment from 'moment'
 import { apiMethods } from '../../../Common/constants/APIConstants'
 import {
-   CountryRequestType,
-   FormattedGetBrowseCategoriesResponseType,
    GetAlbumDetailsResponseType,
    GetCategoryPlaylistsResponseType,
-   GetFeaturedPlaylistsRequestType,
-   GetFeaturedPlaylistsResponseType,
-   GetNewReleasesResponseType,
    GetPlaylistDetailsResponseType,
    GetUserPlaylistsResponseType,
    GetYourMusicResponseType,
-   IdCountryRequestType,
-   IdRequestType
+   IdCountryRequestType
 } from '../../stores/typesv2'
+
+import {
+   GetFeaturedPlaylistsRequestType,
+   GetFeaturedPlaylistsResponseType,
+   GetBrowseCategoriesResponseType,
+   GetNewReleasesResponseType,
+   CountryRequestType,
+   IdRequestType
+} from '../../stores/types'
 import endpoints from '../endpoints'
 import { BASE_URL } from '../../../Common/constants/NavigationConstants'
 import MusicService from '../MusicService'
@@ -45,7 +48,7 @@ class MusicServiceApi implements MusicService {
       )
    }
 
-   getBrowseCategories(): Promise<FormattedGetBrowseCategoriesResponseType> {
+   getBrowseCategories(): Promise<GetBrowseCategoriesResponseType> {
       return this.networkCallWithApisauce(
          BASE_URL,
          endpoints.browseCategories,

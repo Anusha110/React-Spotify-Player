@@ -1,15 +1,13 @@
-import { NewReleaseItemType, GetNewReleasesResponseType } from '../../typesv2'
-import NewReleasesItemModel from '../NewReleaseItemModel'
+import SpotifyItemModel from '../../models/SpotifyItemModel'
+import { GetNewReleasesResponseType, SpotifyItemType } from '../../types'
 
 class NewReleasesModel {
-   albums: { items: NewReleaseItemType[] }
+   albums: SpotifyItemType[]
 
-   constructor(newReleasesResponse: GetNewReleasesResponseType) {
-      const { albums } = newReleasesResponse
+   constructor(newReleases: GetNewReleasesResponseType) {
+      const { albums } = newReleases
 
-      this.albums = {
-         items: albums.items.map(eachItem => new NewReleasesItemModel(eachItem))
-      }
+      this.albums = albums.items.map(eachItem => new SpotifyItemModel(eachItem))
    }
 }
 

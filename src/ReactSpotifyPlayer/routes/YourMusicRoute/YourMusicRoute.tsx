@@ -3,8 +3,8 @@ import { observer } from 'mobx-react'
 import React, { useContext, useEffect, useState } from 'react'
 import { MusicStoreContext } from '../../../Common/stores/StoresContext'
 import LoadingView from '../../components/LoadingView/LoadingView'
-import SideBar from '../../components/SideBar/SideBar'
-import TrackDetailsModel from '../../stores/models/TrackDetailsModel'
+import SideBar from '../../components/NavBar/NavBar'
+import TrackDetailsModel from '../../stores/modelsv2/TrackDetailsModel'
 import {
    MusicPlayer,
    PlaylistImageInPlayer,

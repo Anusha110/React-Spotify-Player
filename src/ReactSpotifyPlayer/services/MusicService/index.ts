@@ -1,11 +1,5 @@
 import {
-   GetFeaturedPlaylistsRequestType,
-   GetFeaturedPlaylistsResponseType,
-   FormattedGetBrowseCategoriesResponseType,
-   GetNewReleasesResponseType,
-   CountryRequestType,
    GetPlaylistDetailsResponseType,
-   IdRequestType,
    GetAlbumDetailsResponseType,
    GetCategoryPlaylistsResponseType,
    IdCountryRequestType,
@@ -13,12 +7,21 @@ import {
    GetUserPlaylistsResponseType
 } from '../../stores/typesv2'
 
+import {
+   GetFeaturedPlaylistsRequestType,
+   GetFeaturedPlaylistsResponseType,
+   GetBrowseCategoriesResponseType,
+   GetNewReleasesResponseType,
+   CountryRequestType,
+   IdRequestType
+} from '../../stores/types'
+
 interface MusicService {
    getFeaturedPlaylists(
       requestObject: GetFeaturedPlaylistsRequestType
    ): Promise<GetFeaturedPlaylistsResponseType>
 
-   getBrowseCategories(): Promise<FormattedGetBrowseCategoriesResponseType>
+   getBrowseCategories(): Promise<GetBrowseCategoriesResponseType>
 
    getNewReleases(
       requestObject: CountryRequestType

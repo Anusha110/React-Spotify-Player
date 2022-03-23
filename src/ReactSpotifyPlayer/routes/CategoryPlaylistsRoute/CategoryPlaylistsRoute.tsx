@@ -1,34 +1,35 @@
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
 import { observer } from 'mobx-react'
 import React, { useContext, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+
 import {
    MusicStoreContext,
    UserStoreContext
 } from '../../../Common/stores/StoresContext'
+
 import LoadingView from '../../components/LoadingView/LoadingView'
 import Playlists from '../../components/Playlists/Playlists'
-import { IdCountryRequestType } from '../../stores/typesv2'
+import { IdCountryRequestType } from '../../stores/types'
 
 const CategoryPlaylistsRoute = observer(() => {
    const params: IdCountryRequestType = useParams()
-   const history = useHistory()
+   const { userInformationModel, getUserInformation } = useContext(
+      UserStoreContext
+   )
+
    const {
       categoryPlaylistsModel,
       getCategoryPlaylists,
       getCategoryPlaylistsApiStatus,
       browseCategoriesModel
    } = useContext(MusicStoreContext)
-   const { userInformationModel, getUserInformation } = useContext(
-      UserStoreContext
-   )
 
    const getCategoryName = () => {
       if (browseCategoriesModel) {
          const { categories } = browseCategoriesModel
-         const { items } = categories
 
-         const catgoryItem = items.find(item => item.id === params.id)
+         const catgoryItem = categories.find(item => item.id === params.id)
          return catgoryItem?.name
       }
    }
@@ -37,8 +38,10 @@ const CategoryPlaylistsRoute = observer(() => {
       if (userInformationModel === null) {
          getUserInformation()
       }
+
+      const { id } = params
       const requestObj = {
-         id: params.id,
+         id: id,
          country: userInformationModel?.country as string
       }
       getCategoryPlaylists(requestObj)

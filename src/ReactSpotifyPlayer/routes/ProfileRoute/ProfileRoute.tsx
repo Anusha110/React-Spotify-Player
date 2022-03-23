@@ -2,11 +2,13 @@ import { observer } from 'mobx-react'
 import Cookies from 'js-cookie'
 import React, { useContext, useEffect } from 'react'
 import { BsPersonFill } from 'react-icons/bs'
-import { useHistory, useLocation } from 'react-router-dom'
-import { getTypeParameterOwner } from 'typescript'
+import { useHistory } from 'react-router-dom'
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
-import { UserStoreContext } from '../../../Common/stores/StoresContext'
-import SideBar from '../../components/SideBar/SideBar'
+import {
+   MusicStoreContext,
+   UserStoreContext
+} from '../../../Common/stores/StoresContext'
+import SideBar from '../../components/NavBar/NavBar'
 import LoadingView from '../../components/LoadingView/LoadingView'
 import {
    UserContainer,
@@ -23,6 +25,8 @@ import {
 const ProfileRoute = observer(() => {
    const history = useHistory()
    const userStore = useContext(UserStoreContext)
+   const musicStore = useContext(MusicStoreContext)
+   const { getUserPlaylists, userPlaylistsModel } = musicStore
    const {
       userInformationModel,
       getUserInformationApiStatus,
@@ -31,13 +35,13 @@ const ProfileRoute = observer(() => {
 
    useEffect(() => {
       getUserInformation()
-   }, [])
 
-   const getTotalNumberOfFollowers = () => {
-      const followerCount = userInformationModel?.followers.total
-      const followerCountStr = followerCount?.toString()
-      return followerCountStr
-   }
+      if (userPlaylistsModel === null) {
+         if (userInformationModel) {
+            getUserPlaylists({ id: userInformationModel?.id })
+         }
+      }
+   }, [])
 
    const logout = () => {
       Cookies.remove('pa_token')
@@ -55,7 +59,8 @@ const ProfileRoute = observer(() => {
                <UserInfoName>FOLLOWERS</UserInfoName>
             </UserInfoSubSection>
             <UserInfoSubSection>
-               <UserInfoStat>70</UserInfoStat>
+               <UserInfoStat>{userPlaylistsModel?.total}</UserInfoStat>{' '}
+               {/*/If checks here too?*/}
                <UserInfoName>PLAYLISTS</UserInfoName>
             </UserInfoSubSection>
          </UserInfoContainer>

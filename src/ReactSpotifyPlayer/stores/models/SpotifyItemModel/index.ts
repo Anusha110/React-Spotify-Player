@@ -1,14 +1,17 @@
-import { SpotifyItemType } from '../../typesv2'
+import ImageModel from '../../modelsv2/ImageModel'
+import { ImageType, SpotifyItemType } from '../../types'
 
 class SpotifyItemModel {
    id: string
    name: string
+   images: ImageType[]
 
    constructor(spotifyItem: SpotifyItemType) {
-      const { id, name } = spotifyItem
+      const { id, name, images } = spotifyItem
 
       this.id = id
       this.name = name
+      this.images = images.map(eachImage => new ImageModel(eachImage))
    }
 }
 

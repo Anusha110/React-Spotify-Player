@@ -7,7 +7,7 @@ import {
 } from '@ib/api-constants'
 import { observable, action } from 'mobx'
 import UserService from '../../services/UserService'
-import UserInformationModel from '../models/UserInformationModel'
+import UserInformationModel from '../modelsv2/UserInformationModel'
 import { GetUserInformationResponseType } from '../typesv2'
 
 export class UserStore {

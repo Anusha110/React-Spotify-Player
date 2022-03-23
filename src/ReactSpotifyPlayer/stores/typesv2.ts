@@ -356,8 +356,10 @@ export interface FormattedGetYourMusicResponseType {
 
 export interface GetUserPlaylistsResponseType {
    items: PlaylistItemType[]
+   total: number
 }
 
 export interface FormattedGetUserPlaylistsResponseType {
    items: FormattedPlaylistItemType[]
+   total: number
 }

@@ -6,8 +6,7 @@ export const PROFILE_SCREEN_PATH = '/profile/'
 
 export const PLAYLIST_DETAILS_PATH = '/playlists/:id/'
 
-export const CATEGORY_PLAYLIST_DETAILS_PATH =
-   '/browse/categories/:id/playlists/'
+export const CATEGORY_PLAYLIST_DETAILS_PATH = '/categories/:id/playlists/'
 
 export const ALBUM_DETAILS_PATH = '/albums/:id/'
 

@@ -1,6 +1,7 @@
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
 import { observer } from 'mobx-react'
 import React, { useContext, useEffect } from 'react'
+import { USER_PLAYLISTS_PATH } from '../../../Common/constants/NavigationConstants'
 import {
    MusicStoreContext,
    UserStoreContext
@@ -31,11 +32,13 @@ const UserPlaylistsRoute = observer(() => {
    const renderSuccessView = () => {
       if (userPlaylistsModel) {
          const { items } = userPlaylistsModel
+         const path = `/users/${userInformationModel?.id}/playlists/`
          return (
             <Playlists
                title='Your Playlists'
                playlists={items}
-               redirectPath={`/users/${userInformationModel?.id}/playlists/`}
+               redirectPath={path}
+               backbuttonPath={path}
             />
          )
       }

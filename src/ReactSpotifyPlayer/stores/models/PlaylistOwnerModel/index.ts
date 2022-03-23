@@ -1,29 +1,14 @@
-import { PlaylistOwnerType } from '../../typesv2'
+import { PlaylistOwnerType } from '../../types'
 
 class PlaylistOwnerModel {
-   displayName: string
-   spotifyExternalUrl: string
-   href: string
    id: string
-   type: string
-   uri: string
+   displayName: string
 
    constructor(playlistOwnerInfo: PlaylistOwnerType) {
-      const {
-         display_name,
-         external_urls,
-         href,
-         id,
-         type,
-         uri
-      } = playlistOwnerInfo
+      const { display_name, id } = playlistOwnerInfo
 
-      this.displayName = display_name
-      this.spotifyExternalUrl = external_urls.spotify
-      this.href = href
       this.id = id
-      this.type = type
-      this.uri = uri
+      this.displayName = display_name
    }
 }
 

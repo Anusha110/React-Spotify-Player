@@ -1,4 +1,4 @@
-import { ImageType } from '../../types'
+import { ImageType } from '../../typesv2'
 
 class ImageModel {
    url: string

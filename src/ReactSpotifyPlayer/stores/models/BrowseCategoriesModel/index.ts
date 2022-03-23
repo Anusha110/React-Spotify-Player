@@ -1,20 +1,18 @@
 import {
    FormattedBrowseCategoryItemType,
    GetBrowseCategoriesResponseType
-} from '../../typesv2'
-import BrowseCategoryItemModel from '../BrowseCategoryItemModel'
+} from '../../types'
+import BrowseCategoryItemModel from '../../models/BrowseCategoryItemModel'
 
 class BrowseCategoriesModel {
-   categories: { items: FormattedBrowseCategoryItemType[] }
+   categories: FormattedBrowseCategoryItemType[]
 
    constructor(browseCategoriesResponse: GetBrowseCategoriesResponseType) {
       const { categories } = browseCategoriesResponse
 
-      this.categories = {
-         items: categories.items.map(
-            eachItem => new BrowseCategoryItemModel(eachItem)
-         )
-      }
+      this.categories = categories.items.map(
+         eachItem => new BrowseCategoryItemModel(eachItem)
+      )
    }
 }
 

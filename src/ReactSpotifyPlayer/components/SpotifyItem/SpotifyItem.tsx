@@ -1,27 +1,28 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { SpotifyItemType } from '../../stores/types'
 import { SpotifyItemContainer, ItemName, ItemImage } from './styledComponents'
 
-const SpotifyItem = (props: any) => {
+export interface SpotifyItemPropsType {
+   itemDetails: SpotifyItemType
+   redirectPath: string
+}
+
+const SpotifyItem = (props: SpotifyItemPropsType) => {
    const history = useHistory()
    const { itemDetails, redirectPath } = props
-   const { id, name, images } = itemDetails
+   const { name, images } = itemDetails
+   const imageUrl = images[0].url
 
    const renderItemDetails = () => {
-      // if (redirectPath === '/users/spotify/playlists/') {
-      // const path = `${redirectPath}${id}`
       history.push(redirectPath)
-      // }
    }
    return (
       <SpotifyItemContainer onClick={renderItemDetails}>
-         <ItemImage src={images[0].url} alt={name} />
+         <ItemImage src={imageUrl} alt={name} />
          <ItemName>{name}</ItemName>
       </SpotifyItemContainer>
    )
 }
 
 export default SpotifyItem
-
-// name
-// images[0].url

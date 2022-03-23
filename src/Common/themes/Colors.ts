@@ -3,8 +3,13 @@ const colors = {
    black: '#000000',
    black12: 'rgba(0, 0, 0, 0.12)',
    black32: 'rgba(0, 0, 0, 0.32)',
+   black45: '#9B9B9B',
+   blackSix: '#475569',
    blackSeven: '#101010',
+   blackEight: '#303030',
+   blackNine: '#181818',
    black80: 'rgba(0, 0, 0, 0.8)',
+   black90: '#040306',
    blueGreyTwo: '#7b8fac',
    blueyGrey: '#8892a4',
    dark: '#1e2a3f',
@@ -23,7 +28,9 @@ const colors = {
    pinkishOrange: '#ff6b3c',
    silver: '#c1c4c8',
    white50: 'rgba(255,255,255,0.5)',
-   white: 'rgba(255,255,255,1)'
+   white: 'rgba(255,255,255,1)',
+   green400: '#1ED760',
+   green500: '#1db954'
 }
 
 export default colors

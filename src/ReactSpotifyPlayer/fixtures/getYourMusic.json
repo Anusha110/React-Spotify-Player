@@ -1,0 +1,29 @@
+{
+   "items": [
+      {
+         "track": {
+            "album": {
+               "id": "16FbjE4zTKmqoa9DOt4lrs",
+               "images": [
+                  {
+                     "height": 640,
+                     "url": "https://i.scdn.co/image/ab67616d0000b27322f35b0b1851208dd08f4a78",
+                     "width": 640
+                  }
+               ],
+               "name": "Gully Rowdy",
+               "release_date": "2021-05-07"
+            },
+            "artists": [
+               {
+                  "name": "Ram Miriyala"
+               }
+            ],
+            "duration_ms": 226083,
+            "id": "6qNCPMFrXaeVQuA3QFZ4F1",
+            "name": "Puttene Prema",
+            "preview_url": "https://p.scdn.co/mp3-preview/8857fab350b39595c912e6913d2f0f1c8826a4d1?cid=f25d283eae8046588034aee0a42c0f31"
+         }
+      }
+   ]
+}

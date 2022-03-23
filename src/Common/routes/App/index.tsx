@@ -1,30 +1,23 @@
-import React from 'react'
-import { ToastContainer } from 'react-toastify'
 import { Provider } from 'mobx-react'
-import { I18nextProvider } from 'react-i18next'
-
+import React, { Component } from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import i18n from '../../i18n'
-
-import stores from '../../stores'
-
+// import stores from '../../stores'
 import Routes from '../index'
+// import stores from '../../stores'
 
-const App: React.FC = () => (
-   <Provider {...stores}>
-      <I18nextProvider i18n={i18n}>
-         <Routes />
-         <ToastContainer
-            position='top-right'
-            autoClose={1000}
-            hideProgressBar={true}
-            newestOnTop={true}
-            closeOnClick
-            rtl={false}
-            draggable
-            pauseOnHover
-         />
-      </I18nextProvider>
-   </Provider>
+import './App.css'
+import loginFormRoute from '../../../Authentication/routes'
+import reactSpotifyPlayerRoutes from '../../../ReactSpotifyPlayer/routes'
+import LoginFormRoute from '../../../Authentication/routes/LoginFormRoute/LoginFormRoute'
+
+const App = () => (
+   // <Provider {...stores}>
+   <Switch>
+      <Route exact path='/login' component={LoginFormRoute} />
+      {reactSpotifyPlayerRoutes}
+   </Switch>
+   // </Provider>
 )
 
 export default App

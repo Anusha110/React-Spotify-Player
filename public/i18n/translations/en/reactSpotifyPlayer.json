@@ -1,0 +1,13 @@
+{
+   "home": {
+      "featuresPlaylistsSection": "Editor's Picks",
+      "browseCategoriesSection": "Genres & Moods",
+      "newReleasesSection": "New Releases"
+   },
+   "sideBar": {
+      "profileIconText": "Profile",
+      "homeIconText": "Home",
+      "musicIconText": "Your Music",
+      "playlistIconText": "Playlists"
+   }
+}

@@ -1,0 +1,20 @@
+{
+   "playlists": {
+      "items": [
+         {
+            "id": "37i9dQZF1DXcBWIGoYBM5M",
+            "images": [
+               {
+                  "height": null,
+                  "url": "https://i.scdn.co/image/ab67706f0000000324cee63f23e9ec905dbcb3b0",
+                  "width": null
+               }
+            ],
+            "name": "Today's Top Hits",
+            "tracks": {
+               "total": 50
+            }
+         }
+      ]
+   }
+}

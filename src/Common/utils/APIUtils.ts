@@ -8,7 +8,7 @@ import {
 } from '@ib/api-constants'
 import getData from '@ib/api'
 import { ApisauceInstance } from 'apisauce'
-
+import Cookies from 'js-cookie'
 import { apiMethods } from '../constants/APIConstants'
 import { resStatuses, statusCodes } from '../constants/APIErrorConstants'
 import I18n from '../i18n'
@@ -184,7 +184,47 @@ export const networkCallWithFetch = async (url: string) => {
    throw Error(JSON.stringify(response))
 }
 
-export const networkCallWithApisauce = store => async (
+// export const networkCallWithApisauce = store => async (
+//    api: any,
+//    url: string,
+//    requestObject: Record<string, any>,
+//    type: any = apiMethods.post,
+//    options = {
+//       getAccessToken
+//    }
+// ) => {
+//    api.setHeaders({
+//       Authorization: `Bearer ${options.getAccessToken()}`
+//    })
+//    let response: any = null
+//    try {
+//       // NOTE: same api is invocation method is used in AuthApiUtils also. for any modifications update the same there
+//       response = await getData(api, url, requestObject, type)
+//    } catch (error) {
+//       const { message } = error as Error
+//       const { isAccessTokenExpired } = isAccessTokenExpiredMessage(message)
+//       //
+//       if (isAccessTokenExpired) {
+//          // NOTE: To avoid circular dependencies we are passing store as an argument
+
+//          const request = {
+//             refresh_token: getRefreshToken(),
+//             access_token: getAccessToken()
+//          }
+//          await store.refreshAuthTokensAPI(request)
+
+//          api.setHeaders({
+//             Authorization: `Bearer ${options.getAccessToken()}`
+//          })
+//          response = await getData(api, url, requestObject, type)
+//       } else {
+//          throw error
+//       }
+//    }
+//    return response
+// }
+
+export const networkCallWithApisauce = () => async (
    api: any,
    url: string,
    requestObject: Record<string, any>,
@@ -193,34 +233,29 @@ export const networkCallWithApisauce = store => async (
       getAccessToken
    }
 ) => {
-   api.setHeaders({
-      Authorization: `Bearer ${options.getAccessToken()}`
-   })
-   let response: any = null
-   try {
-      // NOTE: same api is invocation method is used in AuthApiUtils also. for any modifications update the same there
-      response = await getData(api, url, requestObject, type)
-   } catch (error) {
-      const { message } = error as Error
-      const { isAccessTokenExpired } = isAccessTokenExpiredMessage(message)
-      //
-      if (isAccessTokenExpired) {
-         // NOTE: To avoid circular dependencies we are passing store as an argument
-
-         const request = {
-            refresh_token: getRefreshToken(),
-            access_token: getAccessToken()
-         }
-         await store.refreshAuthTokensAPI(request)
-
-         api.setHeaders({
-            Authorization: `Bearer ${options.getAccessToken()}`
-         })
-         response = await getData(api, url, requestObject, type)
-      } else {
-         throw error
-      }
+   const finalURL = api + url
+   const token = Cookies.get('pa_token')
+   console.log(finalURL, 'finalURL')
+   const optionsObj = {
+      method: type,
+      headers: { Authorization: `Bearer ${token}` }
    }
+   const response = await fetch(finalURL, optionsObj)
+   return response
+}
+
+export const networkCallWithApiSauceWithoutAuth = () => async (
+   api: any,
+   url: string,
+   requestObject: Record<string, any>,
+   type: any = apiMethods.post
+) => {
+   const finalURL = api + url
+   const options = {
+      method: type,
+      body: JSON.stringify(requestObject)
+   }
+   const response = await fetch(finalURL, options)
    return response
 }
 

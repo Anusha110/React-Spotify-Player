@@ -1,0 +1,27 @@
+{
+   "albums": {
+      "items": [
+         {
+            "id": "4kD0pFwhEjEiF9pwUwkpNo",
+            "images": [
+               {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273b8abc4de41be8b3158a4ef40",
+                  "width": 640
+               },
+               {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02b8abc4de41be8b3158a4ef40",
+                  "width": 300
+               },
+               {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851b8abc4de41be8b3158a4ef40",
+                  "width": 64
+               }
+            ],
+            "name": "Renegade (feat. Taylor Swift)"
+         }
+      ]
+   }
+}

@@ -1,0 +1,95 @@
+
+
+- Not redirecting to login
+- How do we divide into different modules?  (Bsed on responsisbility)
+- Solving key error in exported routes using UUID() (put route path in constants, can use the same as key)
+- font family Assistant, Verdana not applying  ( google fonts)
+- how do you put color names in themes, styled guides  (blue 500)
+- mobile first development (depends on applications)
+- how do you add the media query constants in to the css styled comp
+-  externalUrls: {
+      spotify: string
+   } does it need a Model (UserStore)  (if think you won't get more in the future then can put externalURLSpotify: string). Otherwise, you can put a separate model.
+
+
+Ask Muneera
+- Horizontal scrolling on home page
+
+
+Action Items
+ - Common out model
+ - Handle SideBar onClick
+ - Common Styled Component for Icons
+ - Implement Home Page
+
+- navbar onClick style changes
+- index.ts or MusicStore.ts? inside Music Store folder
+     - in Stores, index.tsx(import named and do default export), name.tsx (with names export)
+-- PlaylistTracksType and Follower Types - two different models? already in camel case - do we need models?
+- public is a reserved keyword in PlaylistItemModel
+
+
+
+
+Action Items 2 
+- Handle SideBar
+- Make responsive
+- Current timestamp
+- Fix endpoints
+
+New Doubts
+- getting the path
+- timestamp for Home Route
+- handling the null  x | null
+- - endpoints
+
+-
+Latest Doubts
+- Id Request Type regardless of where it's user_id or playlist_id or do we need separate ones
+- endpoints /catgroues/id/playlists?contry 
+didn't put slash at the end for everything, becuz there are query params after
+
+
+
+
+
+
+
+
+
+
+
+- not getting match object in History
+- user information is null when refreshing the page
+- no redirecting to playlists properly, previous click playlist is rendering
+- artist id should be stored right
+- handle the marquee text and the music player text
+- put music player into a common component
+- could have put the same model by using 'playlists key' instead of 'items' key in User Playlists Model
+
+Stretch Goals
+ - get the next 20 playlists after the first 20
+
+
+- the way in which I handle the persistent state issue
+-  cursor: pointer; for close and open icon
+- When the data is being fetched then the Loading view should be displayed to the user.
+- responsiveness
+- add slash at the end for endpoints
+- importing packages (third part, other modules, within module - separate with space)
+- IconController
+- Protected Route
+- Logout
+
+null for ImageType height & width
+
+
+TODO:
+
+Setting background-image opacity: https://coder-coder.com/background-image-opacity/
+
+
+
+externalUrls: {
+      spotify: string
+   }

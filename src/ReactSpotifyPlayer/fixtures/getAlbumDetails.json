@@ -1,0 +1,37 @@
+{
+   "artists": [
+      {
+         "name": "Big Red Machine"
+      }
+   ],
+   "id": "4kD0pFwhEjEiF9pwUwkpNo",
+   "images": [
+      {
+         "height": 640,
+         "url": "https://i.scdn.co/image/ab67616d0000b273b8abc4de41be8b3158a4ef40",
+         "width": 640
+      },
+      {
+         "height": 300,
+         "url": "https://i.scdn.co/image/ab67616d00001e02b8abc4de41be8b3158a4ef40",
+         "width": 300
+      },
+      {
+         "height": 64,
+         "url": "https://i.scdn.co/image/ab67616d00004851b8abc4de41be8b3158a4ef40",
+         "width": 64
+      }
+   ],
+   "name": "Renegade (feat. Taylor Swift)",
+   "tracks": {
+      "items": [
+         {
+            "duration_ms": 254466,
+            "popularity": 0,
+            "id": "1aU1wpYBSpP0M6IiihY5Ue",
+            "name": "Renegade (feat. Taylor Swift)",
+            "preview_url": "https://p.scdn.co/mp3-preview/e3b1851865f3ee5f213dfd8d950e344e6b14ec8c?cid=f25d283eae8046588034aee0a42c0f31"
+         }
+      ]
+   }
+}

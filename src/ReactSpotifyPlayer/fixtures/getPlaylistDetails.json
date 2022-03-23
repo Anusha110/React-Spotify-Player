@@ -1,0 +1,53 @@
+{
+   "id": "37i9dQZF1DX7cLxqtNO3zl",
+   "images": [
+      {
+         "height": null,
+         "url": "https://i.scdn.co/image/ab67706f0000000384696e0bd9318a598cc9373d",
+         "width": null
+      }
+   ],
+   "name": "Bollywood Araby",
+   "owner": {
+      "display_name": "Spotify"
+   },
+   "tracks": {
+      "items": [
+         {
+            "added_at": "2021-06-03T19:23:39Z",
+            "track": {
+               "album": {
+                  "name": "BurjKhalifa (From \"Laxmii\")",
+                  "release_date": "2020-10-18"
+               },
+               "artists": [
+                  {
+                     "name": "Shashi"
+                  },
+                  {
+                     "name": "DJ Khushi"
+                  },
+                  {
+                     "external_urls": {
+                        "spotify": "https://open.spotify.com/artist/3tPQOjkxO3mrYrrgkTeXgH"
+                     },
+                     "href": "https://api.spotify.com/v1/artists/3tPQOjkxO3mrYrrgkTeXgH",
+                     "id": "3tPQOjkxO3mrYrrgkTeXgH",
+                     "name": "Nikhita Gandhi",
+                     "type": "artist",
+                     "uri": "spotify:artist:3tPQOjkxO3mrYrrgkTeXgH"
+                  },
+                  {
+                     "name": "Madhubanti"
+                  }
+               ],
+               "duration_ms": 187570,
+               "id": "3ZVKI8jix6PjEFx2xFBFhz",
+               "name": "BurjKhalifa (From \"Laxmii\")",
+               "preview_url": "https://p.scdn.co/mp3-preview/db40ab496ac6cbfdc8b87e8ecf2032b18073b1e5?cid=f25d283eae8046588034aee0a42c0f31",
+               "track_number": 1
+            }
+         }
+      ]
+   }
+}

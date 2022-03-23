@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 
 import './Common/i18n'
+import { BrowserRouter } from 'react-router-dom'
 
 import * as serviceWorker from './serviceWorker'
 import App from './Common/routes/App'
@@ -17,7 +18,11 @@ ReactDOM.render(
          </div>
       }
    >
-      <App />
+      <React.StrictMode>
+         <BrowserRouter>
+            <App />
+         </BrowserRouter>
+      </React.StrictMode>
    </Suspense>,
    document.getElementById('root')
 )

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { Link } from 'react-router-dom'
 
 import CounterStore from '../../stores/CounterStore'
+import { HOME_SCREEN_PATH } from '../../constants/NavigationConstants'
 
 interface CounterWithToastProps {
    counterStore: CounterStore
@@ -37,7 +38,7 @@ class CounterWithToast extends Component<CounterWithToastProps> {
             <button onClick={this.handleIncrement}>+</button>
             <button onClick={this.handleDecrement}>-</button>
 
-            <Link to='/'>
+            <Link to={HOME_SCREEN_PATH}>
                <p>Home</p>
             </Link>
          </div>

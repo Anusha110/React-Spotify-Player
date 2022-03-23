@@ -25,3 +25,8 @@ code {
    justify-content: center;
    background-color: #f7fbff;
 }
+ * {
+    color: white;
+    font-family: Arial;
+ }
+

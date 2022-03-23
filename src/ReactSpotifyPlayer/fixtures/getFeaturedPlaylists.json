@@ -1,0 +1,23 @@
+{
+   "message": "Editor's picks",
+   "playlists": {
+      "items": [
+         {
+            "description": "Hottest Bollywood R&B tunes!",
+            "id": "37i9dQZF1DXdSavJjIP6Fb",
+            "images": [
+               {
+                  "height": null,
+                  "url": "https://i.scdn.co/image/ab67706f000000036caf8c414e0b49f1b5be3e91",
+                  "width": null
+               }
+            ],
+            "name": "Bollywood R&B",
+            "owner": {
+               "display_name": "Spotify",
+               "id": "spotify"
+            }
+         }
+      ]
+   }
+}

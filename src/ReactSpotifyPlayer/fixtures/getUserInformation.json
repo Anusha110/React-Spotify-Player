@@ -1,0 +1,22 @@
+{
+   "country": "IN",
+   "display_name": "Bobby",
+   "email": "padalavijayreddy@gmail.com",
+   "explicit_content": {
+      "filter_enabled": false,
+      "filter_locked": false
+   },
+   "external_urls": {
+      "spotify": "https://open.spotify.com/user/tel1grq8ely359wesuv83nezp"
+   },
+   "followers": {
+      "href": null,
+      "total": 0
+   },
+   "href": "https://api.spotify.com/v1/users/tel1grq8ely359wesuv83nezp",
+   "id": "tel1grq8ely359wesuv83nezp",
+   "images": [],
+   "product": "open",
+   "type": "user",
+   "uri": "spotify:user:tel1grq8ely359wesuv83nezp"
+}

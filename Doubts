@@ -15,10 +15,12 @@
 Ask Muneera
 - Horizontal scrolling on home page
 
+http://localhost:3004/users/5qpta7sq56jjm306kd269sclj/playlists/ can't go directly to this route
+
 
 Action Items
  - Common out model
- - Handle SideBar onClick
+ - Handle NavBar onClick
  - Common Styled Component for Icons
  - Implement Home Page
 
@@ -32,7 +34,7 @@ Action Items
 
 
 Action Items 2 
-- Handle SideBar
+- Handle NavBar
 - Make responsive
 - Current timestamp
 - Fix endpoints

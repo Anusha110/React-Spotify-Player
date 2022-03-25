@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Cookies from 'js-cookie'
-import './index.css'
-import { useTranslation, WithTranslation, withTranslation } from 'react-i18next' //eslint-disable-line
-import { useEffect } from 'react'
+
+import { WithTranslation, withTranslation } from 'react-i18next' //eslint-disable-line
+
+import { ACCESS_TOKEN } from '../../../Common/utils/StorageUtils'
 
 interface LoginRouteRoutePropsType extends WithTranslation {
    location: Location
@@ -15,8 +16,6 @@ import {
    LoginWebsiteLogoDesktopImage,
    SpotifyRemixHeader
 } from './styledComponents'
-
-// import './index.css'
 
 interface LoginRouteRoutePropsType extends WithTranslation {
    location: Location
@@ -79,7 +78,7 @@ class LoginForm extends Component<LoginRouteRoutePropsType> {
             const hash = JSON.parse(event.data)
             if (hash.type === 'access_token') {
                const oneHour = new Date(new Date().getTime() + 60 * 60 * 1000)
-               Cookies.set('pa_token', hash.access_token, {
+               Cookies.set(ACCESS_TOKEN, hash.access_token, {
                   expires: oneHour
                })
                window.location.replace('/')
@@ -115,8 +114,6 @@ class LoginForm extends Component<LoginRouteRoutePropsType> {
       const redirectUrl = this.getRedirectURL()
 
       const url = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&redirect_uri=${redirectUrl}&scope=user-read-private%20user-read-email%20playlist-read-private%20playlist-modify-public%20playlist-modify-private%20user-library-read%20user-library-modify%20user-follow-read%20user-follow-modify&state=34fFs29kd09&show_dialog=true`
-
-      console.log(url, 'URL')
 
       const width = 450
       const height = 730

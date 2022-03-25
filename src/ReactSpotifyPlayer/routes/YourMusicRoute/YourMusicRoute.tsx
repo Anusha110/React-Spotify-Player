@@ -1,17 +1,13 @@
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
 import { observer } from 'mobx-react'
 import React, { useContext, useEffect, useState } from 'react'
+
 import { MusicStoreContext } from '../../../Common/stores/StoresContext'
+
+import AudioPlayer from '../../components/AudioPlayer/AudioPlayer'
 import LoadingView from '../../components/LoadingView/LoadingView'
-import SideBar from '../../components/NavBar/NavBar'
-import TrackDetailsModel from '../../stores/modelsv2/TrackDetailsModel'
-import {
-   MusicPlayer,
-   PlaylistImageInPlayer,
-   TrackText,
-   TrackName,
-   TrackArtists
-} from '../PlaylistDetailsRoute/styledComponents'
+import NavBar from '../../components/NavBar/NavBar'
+
 import {
    LikedSongContainer,
    LikedSongImage,
@@ -47,51 +43,51 @@ const YourMusicRoute = observer(() => {
             eachTrack => eachTrack.id === trackId
          )
          if (track) {
-            const { name, album, artists, previewUrl } = track
+            const { album, artists } = track
             return (
-               <MusicPlayer>
-                  <PlaylistImageInPlayer src={album.images[0].url} />
-                  <TrackText>
-                     <TrackName>{name}</TrackName>
-                     <TrackArtists>{artists[0].name}</TrackArtists>
-                  </TrackText>
-                  <audio src={previewUrl} preload='auto' controls />
-               </MusicPlayer>
+               <AudioPlayer
+                  image={album.images[0]}
+                  track={track}
+                  artist={artists[0]}
+               />
             )
          }
       }
    }
 
+   const renderTrack = track => {
+      const { id, name, album, artists, duration } = track
+      const bullet = `\u{2022}`
+
+      return (
+         <LikedSongRow
+            key={id}
+            onClick={() => playTrack(id)}
+            isPlaying={trackId === track.id}
+         >
+            <LikedSongContainer>
+               <LikedSongImage src={album.images[0].url} alt={name} />
+               <LikedSongText>
+                  <LikedSongName>{name}</LikedSongName>
+                  <LikedSongArtistAlbumText>{`${artists[0].name} ${bullet} ${album.name}`}</LikedSongArtistAlbumText>
+               </LikedSongText>
+            </LikedSongContainer>
+            <LikedSongDuration>{duration}</LikedSongDuration>
+         </LikedSongRow>
+      )
+   }
+
    const renderLikedSongs = () => {
       if (yourMusicModel) {
          const { tracks } = yourMusicModel
-         return tracks.map(eachTrack => {
-            const { id, name, album, artists, duration } = eachTrack
-            const bullet = `\u{2022}`
-            return (
-               <LikedSongRow
-                  key={id}
-                  onClick={() => playTrack(id)}
-                  isPlaying={trackId === eachTrack.id}
-               >
-                  <LikedSongContainer>
-                     <LikedSongImage src={album.images[0].url} alt={name} />
-                     <LikedSongText>
-                        <LikedSongName>{name}</LikedSongName>
-                        <LikedSongArtistAlbumText>{`${artists[0].name} ${bullet} ${album.name}`}</LikedSongArtistAlbumText>
-                     </LikedSongText>
-                  </LikedSongContainer>
-                  <LikedSongDuration>{duration}</LikedSongDuration>
-               </LikedSongRow>
-            )
-         })
+         return tracks.map(eachTrack => renderTrack(eachTrack))
       }
       return null
    }
 
    const renderSuccessView = () => (
       <YourMusicContainer>
-         <SideBar />
+         <NavBar />
          <ContentAndMusicPlayerContainer>
             <YourMusicContentContainer>
                <YourMusicHeader>Your Music</YourMusicHeader>

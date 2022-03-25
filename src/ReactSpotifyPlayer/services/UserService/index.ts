@@ -1,4 +1,4 @@
-import { GetUserInformationResponseType } from '../../stores/typesv2'
+import { GetUserInformationResponseType } from '../../stores/types'
 
 interface UserService {
    getUserInformation(): Promise<GetUserInformationResponseType>

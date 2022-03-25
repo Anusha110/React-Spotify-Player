@@ -8,7 +8,7 @@ import {
    GetUserPlaylistsResponseType,
    GetYourMusicResponseType,
    IdCountryRequestType
-} from '../../stores/typesv2'
+} from '../../stores/types'
 
 import {
    GetFeaturedPlaylistsRequestType,

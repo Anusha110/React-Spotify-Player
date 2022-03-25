@@ -6,9 +6,10 @@ import {
    API_SUCCESS
 } from '@ib/api-constants'
 import { observable, action } from 'mobx'
+
 import UserService from '../../services/UserService'
-import UserInformationModel from '../modelsv2/UserInformationModel'
-import { GetUserInformationResponseType } from '../typesv2'
+import UserInformationModel from '../models/UserInformationModel'
+import { GetUserInformationResponseType } from '../types'
 
 export class UserStore {
    userService: UserService
@@ -43,26 +44,18 @@ export class UserStore {
       response: GetUserInformationResponseType | null
    ): void => {
       if (response) {
-         console.log('change model')
          this.userInformationModel = new UserInformationModel(response)
       }
    }
 
    @action
-   getUserInformation = async (
-      onSubmitSuccess = (): void | null => null,
-      onSubmitFailure = () => null
-   ) => {
-      console.log('get user info')
+   getUserInformation = async () => {
       this.setGetUserInformationApiStatus(API_FETCHING)
       const getUserInformationResponse: any = await this.userService.getUserInformation()
-      console.log(getUserInformationResponse, 'getUserInformationResponse')
       const jsonData = await getUserInformationResponse.json()
-      console.log(jsonData, 'jsonData')
       if (getUserInformationResponse.ok) {
          this.setGetUserInformationApiResponse(jsonData)
          this.setGetUserInformationApiStatus(API_SUCCESS)
-         onSubmitSuccess()
       } else {
          this.setGetUserInformationApiStatus(API_FAILED)
          this.setGetUserInformationApiError(jsonData.error_msg)

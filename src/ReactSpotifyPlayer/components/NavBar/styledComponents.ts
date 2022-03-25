@@ -10,26 +10,27 @@ import {
    LG_DESKTOP_MIN_WIDTH
 } from '../../../Common/constants/ResponsiveConstants'
 
-export const DesktopSideBarContainer = styled.div`
-   width: 20%;
+export const DesktopNavBarContainer = styled.div`
+   width: 100px;
    height: 100vh;
    background-color: ${colors.black90};
    padding-top: 15px;
    display: flex;
    flex-direction: column;
    align-items: center;
-   @media screen and (max-width: 1600px) {
-      width: 35%;
-   }
-   max-width: 115px;
-   @media screen and (max-width: ${LG_DESKTOP_MIN_WIDTH - 1}px) {
-      width: 50%;
-   }
+   flex-shrink: 0;
+   // @media screen and (max-width: 1600px) {
+   //    width: 200px;
+   // }
+   // max-width: 115px;
+   // @media screen and (max-width: ${LG_DESKTOP_MIN_WIDTH - 1}px) {
+   //    width: 180px;
+   // }
    @media screen and (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
       display: none;
    }
 `
-export const MobileSideBarContainer = styled.div`
+export const MobileNavBarContainer = styled.div`
    min-height: 75px;
    background-color: ${colors.black90};
    display: flex;
@@ -44,13 +45,13 @@ export const MobileSideBarContainer = styled.div`
    }
 `
 
-export const DesktopSideBarNavigation = styled(DesktopSideBarContainer)`
+export const DesktopNavBarNavigation = styled(DesktopNavBarContainer)`
    justify-content: center;
    flex-grow: 1;
    width: 100%;
 `
 
-export const MobileSideBarNavigation = styled(MobileSideBarContainer)`
+export const MobileNavBarNavigation = styled(MobileNavBarContainer)`
    justify-content: center;
    flex-grow: 1;
    width: 100%;
@@ -63,7 +64,7 @@ export const SpotifyImage = styled.img`
    }
 `
 
-export const SideBarIconsContainer = styled.div`
+export const NavBarIconsContainer = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -75,7 +76,7 @@ export const SideBarIconsContainer = styled.div`
    }
 `
 
-export const SideBarIcon = styled(Link)<{ clicked: boolean }>`
+export const NavBarIcon = styled(Link)<{ clicked: boolean }>`
    display: flex;
    flex-direction: column;
    justify-content: center;

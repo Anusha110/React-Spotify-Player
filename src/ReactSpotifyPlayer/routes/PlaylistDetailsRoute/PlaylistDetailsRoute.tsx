@@ -1,45 +1,29 @@
 import { observer } from 'mobx-react'
-import ReactAudioPlayer from 'react-audio-player'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useTable } from 'react-table'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom' //eslint-disable-line
-import { IoMdArrowBack } from 'react-icons/io'
 import { useTranslation } from 'react-i18next'
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
+
 import { MusicStoreContext } from '../../../Common/stores/StoresContext'
-import SideBar from '../../components/NavBar/NavBar'
-import { HOME_SCREEN_PATH } from '../../../Common/constants/NavigationConstants'
+
+import NavBar from '../../components/NavBar/NavBar'
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer'
 import colors from '../../../Common/themes/Colors'
 import TrackTable from '../../components/TrackTable/TrackTable'
-import { FormattedTrackDetailsType } from '../../stores/typesv2'
+import { FormattedTrackDetailsType, IdRequestType } from '../../stores/types'
 import LoadingView from '../../components/LoadingView/LoadingView'
+import BackButton from '../../components/BackButton/BackButton'
 import {
-   Audio,
-   BackButtonContainer,
-   BackText,
-   ColumHeader,
-   MusicPlayer,
    PlaylistContentContainer,
    MobilePlaylistDetailsContainer,
    DesktopPlaylistDetailsContainer,
    PlaylistHeader,
    PlaylistImage,
-   PlaylistImageInPlayer,
    PlaylistName,
    PlaylistOwner,
    PlaylistText,
    PlaylistType,
-   Table,
-   TableBody,
-   TableCell,
-   TableContainer,
-   TableHeader,
-   TableRow,
-   TrackArtists,
-   TrackName,
    TracksContainer,
-   TrackText,
    MobileTrackDuration,
    MobileTrackArtist,
    MobileTrackName,
@@ -48,12 +32,12 @@ import {
    MobileTrackContainer
 } from './styledComponents'
 
-const PlaylistDetailsRoute = observer((props: any) => {
+const PlaylistDetailsRoute = observer(() => {
    const [
       currentTrack,
       setCurrentTrack
    ] = useState<FormattedTrackDetailsType | null>(null)
-   const params: any = useParams()
+   const params: IdRequestType = useParams()
    const { t } = useTranslation()
    const {
       getPlaylistDetails,
@@ -105,10 +89,7 @@ const PlaylistDetailsRoute = observer((props: any) => {
 
    const renderHeaderSection = () => (
       <>
-         <BackButtonContainer to={HOME_SCREEN_PATH}>
-            <IoMdArrowBack size={28} />
-            <BackText>Back</BackText>
-         </BackButtonContainer>
+         <BackButton />
          <PlaylistHeader>
             <PlaylistImage src={playlistDetailsModel?.images[0].url} />
             <PlaylistText>
@@ -140,7 +121,7 @@ const PlaylistDetailsRoute = observer((props: any) => {
                   image={image}
                   track={currentTrack}
                   artist={currentTrack.artists[0]}
-               ></AudioPlayer>
+               />
             )
          }
       }
@@ -191,7 +172,7 @@ const PlaylistDetailsRoute = observer((props: any) => {
 
    const renderDesktopView = () => (
       <DesktopPlaylistDetailsContainer>
-         <SideBar />
+         <NavBar />
          <PlaylistContentContainer>
             <TracksContainer>
                {renderHeaderSection()}

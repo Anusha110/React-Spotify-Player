@@ -234,8 +234,8 @@ export const networkCallWithApisauce = () => async (
    }
 ) => {
    const finalURL = api + url
+   console.log('finalURL', finalURL)
    const token = Cookies.get('pa_token')
-   console.log(finalURL, 'finalURL')
    const optionsObj = {
       method: type,
       headers: { Authorization: `Bearer ${token}` }

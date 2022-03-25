@@ -3,14 +3,12 @@ import { observer } from 'mobx-react'
 import { useTranslation } from 'react-i18next'
 
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
-import {
-   MusicStoreContext,
-   UserStoreContext
-} from '../../../Common/stores/StoresContext'
+import { MusicStoreContext } from '../../../Common/stores/StoresContext'
 
 import SpotifyItem from '../../components/SpotifyItem/SpotifyItem'
 import LoadingView from '../../components/LoadingView/LoadingView'
-import SideBar from '../../components/NavBar/NavBar'
+import NavBar from '../../components/NavBar/NavBar'
+import useUserInformation from '../../hooks/useUserInformation'
 import {
    HomeContainer,
    HomeContentContainer,
@@ -22,9 +20,7 @@ import {
 const i18nHomePath = 'reactSpotifyPlayer:home.'
 
 const HomeRoute = observer(() => {
-   const { getUserInformation, userInformationModel } = useContext(
-      UserStoreContext
-   )
+   const userInformationModel = useUserInformation()
    const { t } = useTranslation()
    const {
       getBrowseCategories,
@@ -39,7 +35,6 @@ const HomeRoute = observer(() => {
    } = useContext(MusicStoreContext)
 
    useEffect(() => {
-      getUserInformation()
       getBrowseCategories()
    }, [])
 
@@ -118,7 +113,7 @@ const HomeRoute = observer(() => {
 
    const renderSuccessView = () => (
       <HomeContainer>
-         <SideBar />
+         <NavBar />
          <HomeContentContainer>
             {featuredPlaylistsModel &&
                renderHomeSection(

@@ -4,6 +4,7 @@ import { DESKTOP_MIN_WIDTH } from '../../../Common/constants/ResponsiveConstants
 import colors from '../../../Common/themes/Colors'
 
 export const HomeContainer = styled.div`
+   height: 100vh;
    max-height: 100vh;
    background-color: ${colors.blackNine};
    display: flex;

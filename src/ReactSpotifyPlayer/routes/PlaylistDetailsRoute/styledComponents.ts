@@ -1,11 +1,8 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import tw from 'twin.macro'
 import {
    DESKTOP_MIN_WIDTH,
-   SM_MAX_WIDTH,
-   SM_MIN_WIDTH,
-   TABLET_MIN_WIDTH
+   SM_MIN_WIDTH
 } from '../../../Common/constants/ResponsiveConstants'
 import colors from '../../../Common/themes/Colors'
 
@@ -85,20 +82,6 @@ export const TrackArtists = styled.p`
    font-size: 13px;
 `
 
-export const BackButtonContainer = styled(Link)`
-   ${tw`flex flex-row items-center`}
-   margin-bottom: 20px;
-   @media screen and (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
-      margin-left: 20px;
-      margin-top: 15px;
-   }
-`
-
-export const BackText = styled.p`
-   font-size: 18px;
-   margin-left: 10px;
-`
-
 export const PlaylistHeader = styled.div`
    ${tw`flex flex-row`}
    @media screen and (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
@@ -158,37 +141,6 @@ export const PlaylistOwner = styled.p`
       font-size: 20px;
    }
 `
-
-export const TableContainer = styled.div``
-
-export const Table = styled.table`
-   margin-top: 30px;
-`
-
-export const TableHeader = styled.thead``
-
-export const TableRow = styled.tr<{ bgColor: boolean }>`
-   width: 200px;
-   cursor: pointer;
-`
-
-// background-color: ${props => {
-//    props.bgColor ? 'yellow' : colors.blackEight
-// }};
-
-export const TableCell = styled.td`
-   padding: 10px;
-   padding-left: 20px;
-   text-align: left;
-`
-
-export const ColumHeader = styled.th`
-   border-bottom: solid 1px ${colors.blackSix};
-   text-align: left;
-   padding-bottom: 10px;
-   padding-left: 20px;
-`
-export const TableBody = styled.tbody``
 
 export const MobileTrackContainer = styled.div`
    margin-top: 50px;

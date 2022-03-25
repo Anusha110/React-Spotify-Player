@@ -1,4 +1,4 @@
-import { GetUserInformationResponseType } from '../../stores/typesv2'
+import { GetUserInformationResponseType } from '../../stores/types'
 import getUserInformation from '../../fixtures/getUserInformation.json'
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils'
 import UserService from '.'

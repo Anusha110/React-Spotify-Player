@@ -1,12 +1,7 @@
-import { observer } from 'mobx-react'
 import React from 'react'
-import {
-   ArtistType,
-   FormattedAlbumTrackType,
-   FormattedTrackDetailsType,
-   ImageType
-} from '../../stores/typesv2'
-import TrackTable from '../TrackTable/TrackTable'
+import { observer } from 'mobx-react'
+
+import { ArtistType, ImageType } from '../../stores/types'
 import {
    AudioPlayerContainer,
    PlaylistImageInPlayer,
@@ -15,9 +10,13 @@ import {
    TrackText
 } from './styledComponents'
 
+interface TrackType {
+   name: string
+   previewUrl: string
+}
 interface AudioPlayerType {
    image: ImageType
-   track: FormattedTrackDetailsType | FormattedAlbumTrackType
+   track: TrackType // Can we do this?
    artist: ArtistType
 }
 

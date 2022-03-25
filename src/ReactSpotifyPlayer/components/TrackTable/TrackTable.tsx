@@ -4,7 +4,7 @@ import { useTable } from 'react-table'
 import {
    FormattedAlbumTrackType,
    FormattedTrackItemType
-} from '../../stores/typesv2'
+} from '../../stores/types'
 import {
    ColumHeader,
    Table,

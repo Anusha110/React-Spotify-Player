@@ -1,6 +1,6 @@
 import { create, ApisauceInstance } from 'apisauce'
 import { apiMethods } from '../../../Common/constants/APIConstants'
-import { GetUserInformationResponseType } from '../../stores/typesv2'
+import { GetUserInformationResponseType } from '../../stores/types'
 import endpoints from '../endpoints'
 import { BASE_URL } from '../../../Common/constants/NavigationConstants'
 import UserService from '.'

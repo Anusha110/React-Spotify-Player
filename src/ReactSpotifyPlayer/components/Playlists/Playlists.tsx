@@ -2,8 +2,9 @@ import React from 'react'
 import { IoMdArrowBack } from 'react-icons/io'
 import { useHistory } from 'react-router-dom'
 import { HOME_SCREEN_PATH } from '../../../Common/constants/NavigationConstants'
-import { FormattedPlaylistItemType } from '../../stores/typesv2'
-import SideBar from '../NavBar/NavBar'
+import { FormattedPlaylistItemType } from '../../stores/types'
+import BackButton from '../BackButton/BackButton'
+import NavBar from '../NavBar/NavBar'
 import {
    Title,
    PlaylistItem,
@@ -13,8 +14,6 @@ import {
    TotalTracks,
    PlaylistsContainer,
    PlaylistsContentContainer,
-   BackButtonContainer,
-   BackText,
    PlaylistItems
 } from './styledComponents'
 
@@ -22,27 +21,14 @@ interface PlaylistItemPropsType {
    title: string
    playlists: FormattedPlaylistItemType[]
    redirectPath: string
-   backbuttonPath?: string
 }
 
 const Playlists = (props: PlaylistItemPropsType) => {
    const history = useHistory()
-   const { title, playlists, redirectPath, backbuttonPath } = props
-   const backlink = backbuttonPath ? backbuttonPath : HOME_SCREEN_PATH
-   // console.log('backlink', backlink)
+   const { title, playlists, redirectPath } = props
 
    const onPlaylistClick = (id: string) => {
       history.push(`${redirectPath}${id}/`)
-   }
-
-   const renderBackButton = () => {
-      console.log('backlink', backlink)
-      return (
-         <BackButtonContainer href={backlink}>
-            <IoMdArrowBack size={28} />
-            <BackText>Back</BackText>
-         </BackButtonContainer>
-      )
    }
 
    const renderPlaylistItem = playlist => {
@@ -60,9 +46,9 @@ const Playlists = (props: PlaylistItemPropsType) => {
 
    return (
       <PlaylistsContainer>
-         <SideBar />
+         <NavBar />
          <PlaylistsContentContainer>
-            {renderBackButton()}
+            <BackButton />
             <Title>{title}</Title>
             <PlaylistItems>
                {playlists.map(eachPlaylist => renderPlaylistItem(eachPlaylist))}

@@ -6,15 +6,16 @@ import {
    API_SUCCESS
 } from '@ib/api-constants'
 import { observable, action } from 'mobx'
+
 import MusicService from '../../services/MusicService'
-import AlbumDetailsModel from '../modelsv2/AlbumDetailsModel'
+import AlbumDetailsModel from '../models/AlbumDetailsModel'
 import BrowseCategoriesModel from '../models/BrowseCategoriesModel'
-import CategoryPlaylistsModel from '../modelsv2/CategoryPlaylistsModel'
+import CategoryPlaylistsModel from '../models/CategoryPlaylistsModel'
 import FeaturedPlaylistsModel from '../models/FeaturedPlaylistsModel'
 import NewReleasesModel from '../models/NewReleasesModel'
-import PlaylistDetailsModel from '../modelsv2/PlaylistDetailsModel'
-import UserPlaylistsModel from '../modelsv2/UsersPlaylistsModel'
-import YourMusicModel from '../modelsv2/YourMusicModel'
+import PlaylistDetailsModel from '../models/PlaylistDetailsModel'
+import UserPlaylistsModel from '../models/UsersPlaylistsModel'
+import YourMusicModel from '../models/YourMusicModel'
 import {
    FormattedGetPlaylistDetailsResponseType,
    GetPlaylistDetailsResponseType,
@@ -27,7 +28,7 @@ import {
    GetYourMusicResponseType,
    FormattedGetUserPlaylistsResponseType,
    GetUserPlaylistsResponseType
-} from '../typesv2'
+} from '../types'
 
 import {
    GetFeaturedPlaylistsRequestType,
@@ -190,7 +191,6 @@ export class MusicStore {
       this.setGetBrowseCategoriesApiStatus(API_FETCHING)
       const getBrowseCategoriesResponse: any = await this.musicService.getBrowseCategories()
       const jsonData = await getBrowseCategoriesResponse.json()
-      console.log(getBrowseCategoriesResponse, 'getBrowseCategoriesResponse')
       if (getBrowseCategoriesResponse.ok) {
          this.setGetBrowseCategoriesResponse(jsonData)
          this.setGetBrowseCategoriesApiStatus(API_SUCCESS)
@@ -380,7 +380,7 @@ export class MusicStore {
 
    @action
    setGetUserPlaylistsApiError = (error: string): void => {
-      this.getUserPlaylistsApiError = status
+      this.getUserPlaylistsApiError = error
    }
 
    @action

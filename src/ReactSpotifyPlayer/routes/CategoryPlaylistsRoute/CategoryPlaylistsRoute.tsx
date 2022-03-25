@@ -3,20 +3,16 @@ import { observer } from 'mobx-react'
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-import {
-   MusicStoreContext,
-   UserStoreContext
-} from '../../../Common/stores/StoresContext'
+import { MusicStoreContext } from '../../../Common/stores/StoresContext'
 
 import LoadingView from '../../components/LoadingView/LoadingView'
 import Playlists from '../../components/Playlists/Playlists'
+import useUserInformation from '../../hooks/useUserInformation'
 import { IdCountryRequestType } from '../../stores/types'
 
 const CategoryPlaylistsRoute = observer(() => {
    const params: IdCountryRequestType = useParams()
-   const { userInformationModel, getUserInformation } = useContext(
-      UserStoreContext
-   )
+   const userInformationModel = useUserInformation()
 
    const {
       categoryPlaylistsModel,
@@ -28,17 +24,11 @@ const CategoryPlaylistsRoute = observer(() => {
    const getCategoryName = () => {
       if (browseCategoriesModel) {
          const { categories } = browseCategoriesModel
-
-         const catgoryItem = categories.find(item => item.id === params.id)
-         return catgoryItem?.name
+         return categories.find(item => item.id === params.id)?.name
       }
    }
 
    useEffect(() => {
-      if (userInformationModel === null) {
-         getUserInformation()
-      }
-
       const { id } = params
       const requestObj = {
          id: id,

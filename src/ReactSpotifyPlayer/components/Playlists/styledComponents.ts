@@ -14,6 +14,7 @@ export const PlaylistsContainer = styled.div`
    background-color: ${colors.blackNine};
    display: flex;
    flex-direction: row;
+   width: 100%;
    @media screen and (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
       flex-direction: column;
    }
@@ -21,41 +22,39 @@ export const PlaylistsContainer = styled.div`
 
 export const PlaylistsContentContainer = styled.div`
    overflow-y: auto;
+   padding-top: 30px;
+   padding-left: 40px;
 `
 
-export const BackButtonContainer = styled(Link)`
-   ${tw`flex flex-row items-center`}
-   margin: 30px;
-   margin-bottom: 50px;
-`
-
-export const BackText = styled.p`
-   font-size: 18px;
-   margin-left: 10px;
-`
 export const Title = styled.p`
    font-size: 30px;
    font-weight: bold;
-   margin-left: 40px;
+   margin-left: 15px;
+   @media screen and (max-width: ${TABLET_MIN_WIDTH - 1}px) {
+      margin-left: 0px;
+   }
+   @media screen and (max-width: ${SM_MIN_WIDTH - 1}px) {
+      font-size: 25px;
+   }
 `
 
 export const PlaylistItems = styled.div`
    ${tw`flex flex-row`}
    flex-wrap: wrap;
    @media screen and (max-width: ${TABLET_MIN_WIDTH - 1}px) {
-      ${tw`flex flex-col`}
-      padding-left: 20px;
+      ${tw`flex flex-col`};
    }
 `
 
 export const PlaylistItem = styled.div`
    ${tw`flex flex-col items-center`}
    margin: 20px;
+   margin-left: 0px;
    width: 250px;
    cursor: pointer;
    // flex-wrap: wrap;
    @media screen and (max-width: ${TABLET_MIN_WIDTH - 1}px) {
-      ${tw`flex flex-row`}
+      ${tw`flex flex-row`};
       width: auto;
    }
 `
@@ -72,8 +71,8 @@ export const PlaylistImage = styled.img`
    height: 200px;
    border-radius: 10px;
    @media screen and (max-width: ${SM_MIN_WIDTH - 1}px) {
-      height: 150px;
-      width: 150px;
+      height: 100px;
+      width: 100px;
    }
 `
 

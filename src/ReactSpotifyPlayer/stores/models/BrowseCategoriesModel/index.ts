@@ -2,7 +2,7 @@ import {
    FormattedBrowseCategoryItemType,
    GetBrowseCategoriesResponseType
 } from '../../types'
-import BrowseCategoryItemModel from '../../models/BrowseCategoryItemModel'
+import BrowseCategoryItemModel from '../BrowseCategoryItemModel'
 
 class BrowseCategoriesModel {
    categories: FormattedBrowseCategoryItemType[]

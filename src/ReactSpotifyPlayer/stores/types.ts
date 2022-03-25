@@ -27,6 +27,42 @@ export interface SpotifyItemType {
    images: ImageType[]
 }
 
+// Get User Information
+
+export interface FollowersType {
+   href: null
+   total: number
+}
+export interface GetUserInformationResponseType {
+   country: string
+   display_name: string
+   email: string
+   external_urls: {
+      spotify: string
+   }
+   followers: FollowersType
+   href: string
+   id: string
+   images: ImageType[]
+   product: string
+   type: string
+   uri: string
+}
+
+export interface FormattedGetUserInformationResponseType {
+   country: string
+   display_name: string
+   email: string
+   spotifyExternalUrl: string
+   followers: FollowersType
+   href: string
+   id: string
+   images: ImageType[]
+   product: string
+   type: string
+   uri: string
+}
+
 // Get Featured Playlists
 
 export interface PlaylistOwnerType {
@@ -198,4 +234,80 @@ export interface FormattedGetAlbumDetailsResponseType {
    tracks: {
       items: FormattedAlbumTrackType[]
    }
+}
+
+export interface PlaylistItemType {
+   id: string
+   name: string
+   images: ImageType[]
+   tracks: {
+      total: number
+   }
+}
+
+export interface GetCategoryPlaylistsResponseType {
+   playlists: {
+      items: PlaylistItemType[]
+   }
+}
+
+export interface FormattedPlaylistItemType {
+   id: string
+   name: string
+   images: ImageType[]
+   totalTracks: number
+}
+
+export interface FormattedGetCategoryPlaylistsResponseType {
+   playlists: FormattedPlaylistItemType[]
+}
+
+export interface LikedSongAlbumType extends AlbumType {
+   id: string
+   images: ImageType[]
+}
+
+export interface LikedSongTrackType {
+   album: LikedSongAlbumType
+   artists: ArtistType[]
+   duration_ms: number
+   id: string
+   name: string
+   preview_url: string
+}
+
+export interface GetYourMusicItemType {
+   track: LikedSongTrackType
+}
+
+export interface GetYourMusicResponseType {
+   items: GetYourMusicItemType[]
+}
+
+export interface FormattedLikedSongAlbumType extends FormattedAlbumType {
+   id: string
+   images: ImageType[]
+}
+
+export interface FormattedLikedSongTrackType {
+   album: FormattedLikedSongAlbumType
+   artists: ArtistType[]
+   duration: string
+   id: string
+   name: string
+   previewUrl: string
+}
+
+export interface FormattedGetYourMusicResponseType {
+   tracks: FormattedLikedSongTrackType[]
+}
+
+export interface GetUserPlaylistsResponseType {
+   items: PlaylistItemType[]
+   total: number
+}
+
+export interface FormattedGetUserPlaylistsResponseType {
+   items: FormattedPlaylistItemType[]
+   total: number
 }

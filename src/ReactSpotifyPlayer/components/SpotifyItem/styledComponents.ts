@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 import tw from 'twin.macro'
-import {
-   DESKTOP_MIN_WIDTH,
-   TABLET_MIN_WIDTH
-} from '../../../Common/constants/ResponsiveConstants'
-import colors from '../../../Common/themes/Colors'
+import { TABLET_MIN_WIDTH } from '../../../Common/constants/ResponsiveConstants'
 
 export const SpotifyItemContainer = styled.div`
    ${tw`flex flex-col items-center`}

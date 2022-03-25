@@ -3,7 +3,8 @@ import Cookie from 'js-cookie'
 export const ID_TOKEN_KEY = 'id_token'
 export const REFRESH_TOKEN_KEY = 'refresh_token'
 export const USER_ID = 'user_id'
-export const ACCESS_TOKEN = 'access_token'
+// export const ACCESS_TOKEN = 'access_token'
+export const ACCESS_TOKEN = 'pa_token'
 
 export function getCookie(key: string) {
    return Cookie.get(key)

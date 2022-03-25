@@ -1,22 +1,18 @@
 import { observer } from 'mobx-react'
-import ReactAudioPlayer from 'react-audio-player'
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useTable } from 'react-table'
-import { useParams } from 'react-router-dom' //eslint-disable-line
-import { IoMdArrowBack } from 'react-icons/io'
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
+
 import { MusicStoreContext } from '../../../Common/stores/StoresContext'
-import SideBar from '../../components/NavBar/NavBar'
-import { HOME_SCREEN_PATH } from '../../../Common/constants/NavigationConstants'
+
+import NavBar from '../../components/NavBar/NavBar'
 import AudioPlayer from '../../components/AudioPlayer/AudioPlayer'
 import LoadingView from '../../components/LoadingView/LoadingView'
 import colors from '../../../Common/themes/Colors'
 import TrackTable from '../../components/TrackTable/TrackTable'
-import { FormattedAlbumTrackType } from '../../stores/typesv2'
+import { FormattedAlbumTrackType, IdRequestType } from '../../stores/types'
 import {
-   BackButtonContainer,
-   BackText,
    PlaylistContentContainer,
    MobilePlaylistDetailsContainer,
    DesktopPlaylistDetailsContainer,
@@ -34,13 +30,14 @@ import {
    MobileTrackText,
    MobileTrackContainer
 } from '../PlaylistDetailsRoute/styledComponents'
+import BackButton from '../../components/BackButton/BackButton'
 
-const AlbumDetailsRoute = observer((props: any) => {
+const AlbumDetailsRoute = observer(() => {
    const [
       currentTrack,
       setCurrentTrack
    ] = useState<FormattedAlbumTrackType | null>(null)
-   const params: any = useParams()
+   const params: IdRequestType = useParams()
    const { t } = useTranslation()
    const {
       getAlbumDetails,
@@ -59,7 +56,6 @@ const AlbumDetailsRoute = observer((props: any) => {
          Header: 'Track',
          accessor: 'name',
          width: '500px'
-         // accessor is the "key" in the data
       },
       {
          Header: 'Time',
@@ -77,38 +73,39 @@ const AlbumDetailsRoute = observer((props: any) => {
       getAlbumDetails({ id: params.id })
    }, [])
 
-   const renderHeaderSection = () => (
-      <>
-         <BackButtonContainer to={HOME_SCREEN_PATH}>
-            <IoMdArrowBack size={28} />
-            <BackText>Back</BackText>
-         </BackButtonContainer>
-         <PlaylistHeader>
-            <PlaylistImage src={albumDetailsModel?.images[0].url} />
-            <PlaylistText>
-               <PlaylistType>
-                  {t('reactSpotifyPlayer:home.newReleasesSection')}
-               </PlaylistType>
-               <PlaylistName>{albumDetailsModel?.name}</PlaylistName>
-               <PlaylistOwner>
-                  {albumDetailsModel?.artists[0].name}
-               </PlaylistOwner>
-            </PlaylistText>
-         </PlaylistHeader>
-      </>
-   )
-
    const getTrackBgColor = track =>
       track === currentTrack ? colors.blackEight : 'transparent'
 
    const playTrack = track => {
-      console.log('track', track)
       setCurrentTrack(track)
+   }
+
+   const renderHeaderSection = () => {
+      if (albumDetailsModel) {
+         return (
+            <>
+               <BackButton />
+               <PlaylistHeader>
+                  <PlaylistImage src={albumDetailsModel?.images[0].url} />
+                  <PlaylistText>
+                     <PlaylistType>
+                        {t('reactSpotifyPlayer:home.newReleasesSection')}
+                     </PlaylistType>
+                     <PlaylistName>{albumDetailsModel?.name}</PlaylistName>
+                     <PlaylistOwner>
+                        {albumDetailsModel?.artists[0].name}
+                     </PlaylistOwner>
+                  </PlaylistText>
+               </PlaylistHeader>
+            </>
+         )
+      }
+      return null
    }
 
    const renderMusicPlayer = () => {
       if (albumDetailsModel) {
-         const image = albumDetailsModel?.images[0]
+         const image = albumDetailsModel.images[0]
          if (currentTrack) {
             return (
                <AudioPlayer
@@ -124,28 +121,32 @@ const AlbumDetailsRoute = observer((props: any) => {
 
    const renderRows = () => {
       const items = albumDetailsModel?.tracks.items
-
-      return (
-         <MobileTrackContainer>
-            {items?.map(eachItem => (
-               <MobileTrackRow
-                  key={eachItem.id}
-                  onClick={() => playTrack(eachItem)}
-                  style={{
-                     backgroundColor: `${getTrackBgColor(eachItem)}`
-                  }}
-               >
-                  <MobileTrackText>
-                     <MobileTrackName>{eachItem.name}</MobileTrackName>
-                     <MobileTrackArtist>
-                        {albumDetailsModel?.artists[0].name}
-                     </MobileTrackArtist>
-                  </MobileTrackText>
-                  <MobileTrackDuration>{eachItem.duration}</MobileTrackDuration>
-               </MobileTrackRow>
-            ))}
-         </MobileTrackContainer>
-      )
+      if (items) {
+         return (
+            <MobileTrackContainer>
+               {items.map(eachItem => (
+                  <MobileTrackRow
+                     key={eachItem.id}
+                     onClick={() => playTrack(eachItem)}
+                     style={{
+                        backgroundColor: `${getTrackBgColor(eachItem)}`
+                     }}
+                  >
+                     <MobileTrackText>
+                        <MobileTrackName>{eachItem.name}</MobileTrackName>
+                        <MobileTrackArtist>
+                           {albumDetailsModel?.artists[0].name}
+                        </MobileTrackArtist>
+                     </MobileTrackText>
+                     <MobileTrackDuration>
+                        {eachItem.duration}
+                     </MobileTrackDuration>
+                  </MobileTrackRow>
+               ))}
+            </MobileTrackContainer>
+         )
+      }
+      return null
    }
 
    const renderTable = () => {
@@ -164,7 +165,7 @@ const AlbumDetailsRoute = observer((props: any) => {
 
    const renderDesktopView = () => (
       <DesktopPlaylistDetailsContainer>
-         <SideBar />
+         <NavBar />
          <PlaylistContentContainer>
             <TracksContainer>
                {renderHeaderSection()}

@@ -6,23 +6,19 @@ import getAlbumDetails from '../../fixtures/getAlbumDetails.json'
 import getCategoryPlaylists from '../../fixtures/getCategoryPlaylists.json'
 import getYourMusic from '../../fixtures/getYourMusic.json'
 import getUserPlaylists from '../../fixtures/getUserPlaylists.json'
-
-import {
-   GetPlaylistDetailsResponseType,
-   GetAlbumDetailsResponseType,
-   GetCategoryPlaylistsResponseType,
-   IdCountryRequestType,
-   GetYourMusicResponseType,
-   GetUserPlaylistsResponseType
-} from '../../stores/typesv2'
-
 import {
    GetFeaturedPlaylistsRequestType,
    GetFeaturedPlaylistsResponseType,
    GetBrowseCategoriesResponseType,
    GetNewReleasesResponseType,
    CountryRequestType,
-   IdRequestType
+   IdRequestType,
+   GetAlbumDetailsResponseType,
+   GetCategoryPlaylistsResponseType,
+   GetPlaylistDetailsResponseType,
+   GetUserPlaylistsResponseType,
+   GetYourMusicResponseType,
+   IdCountryRequestType
 } from '../../stores/types'
 import { resolveWithTimeout } from '../../../Common/utils/TestUtils'
 import MusicService from '.'

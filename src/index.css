@@ -1,3 +1,4 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap'); */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,6 +28,6 @@ code {
 }
  * {
     color: white;
-    font-family: Arial;
+    font-family: Assistant;
  }
 

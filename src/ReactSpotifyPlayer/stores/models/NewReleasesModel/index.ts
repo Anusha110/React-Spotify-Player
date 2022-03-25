@@ -1,4 +1,4 @@
-import SpotifyItemModel from '../../models/SpotifyItemModel'
+import SpotifyItemModel from '../SpotifyItemModel'
 import { GetNewReleasesResponseType, SpotifyItemType } from '../../types'
 
 class NewReleasesModel {

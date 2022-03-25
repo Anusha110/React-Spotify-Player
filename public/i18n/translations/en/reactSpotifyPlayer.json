@@ -4,10 +4,14 @@
       "browseCategoriesSection": "Genres & Moods",
       "newReleasesSection": "New Releases"
    },
-   "sideBar": {
+   "navBar": {
       "profileIconText": "Profile",
       "homeIconText": "Home",
       "musicIconText": "Your Music",
       "playlistIconText": "Playlists"
-   }
+   },
+   "userPlaylists": {
+      "pageTitle": "Your Playlists"
+   },
+   "spotifyLogoAltText": "website logo"
 }

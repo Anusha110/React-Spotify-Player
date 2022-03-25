@@ -101,5 +101,3 @@ export const LikedSongRow = styled.div<{ isPlaying: boolean }>`
    ${tw`flex flex-row justify-between items-center`}
    cursor: pointer;
 `
-//    background-color: ${props =>
-//       props.isPlaying ? colors.black45 : 'transparent'}

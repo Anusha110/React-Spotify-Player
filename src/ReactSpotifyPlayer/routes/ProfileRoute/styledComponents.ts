@@ -1,4 +1,4 @@
-import { BsFillPersonFill, BsPersonFill } from 'react-icons/bs'
+import { BsFillPersonFill } from 'react-icons/bs'
 import styled from 'styled-components'
 import tw from 'twin.macro'
 import { DESKTOP_MIN_WIDTH } from '../../../Common/constants/ResponsiveConstants'

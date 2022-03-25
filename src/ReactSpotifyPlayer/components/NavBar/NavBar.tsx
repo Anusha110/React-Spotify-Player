@@ -1,11 +1,5 @@
 import React, { useContext } from 'react'
-import {
-   Link,
-   match,
-   useHistory,
-   useLocation,
-   withRouter
-} from 'react-router-dom' //eslint-disable-line
+import { Link, useHistory, useLocation, withRouter } from 'react-router-dom' //eslint-disable-line
 import { useState } from 'react'
 import { History } from 'history' //eslint-disable-line
 import { observer } from 'mobx-react'
@@ -14,29 +8,29 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { useTranslation } from 'react-i18next'
 import {
    HOME_SCREEN_PATH,
-   PLAYLIST_DETAILS_PATH,
    PROFILE_SCREEN_PATH,
-   USER_PLAYLISTS_PATH,
    YOUR_MUSIC_PATH
 } from '../../../Common/constants/NavigationConstants'
-import colors from '../../../Common/themes/Colors'
 import { UserStoreContext } from '../../../Common/stores/StoresContext'
 import {
-   DesktopSideBarContainer,
-   MobileSideBarContainer,
+   DesktopNavBarContainer,
+   MobileNavBarContainer,
    SpotifyImage,
-   SideBarIconsContainer,
-   SideBarIcon,
+   NavBarIconsContainer,
+   NavBarIcon,
    IconName,
-   DesktopSideBarNavigation,
-   MobileSideBarNavigation,
+   DesktopNavBarNavigation,
+   MobileNavBarNavigation,
    HomeIcon,
    MusicIcon,
    PersonIcon,
    PlaylistIcon
 } from './styledComponents'
 
-const SideBar = observer(() => {
+const i18nNavBarPath = 'reactSpotifyPlayer:navBar.'
+const i18nLogoAltTextPath = 'reactSpotifyPlayer:spotifyLogoAltText.'
+
+const NavBar = observer(() => {
    const { pathname } = useLocation()
    const { t } = useTranslation()
    const { userInformationModel } = useContext(UserStoreContext)
@@ -55,61 +49,53 @@ const SideBar = observer(() => {
    }
 
    const renderIcons = () => (
+      //FIXME: How can I make this more clean?
       <>
-         <SideBarIcon to={PROFILE_SCREEN_PATH} clicked={isProfileScreen}>
+         <NavBarIcon to={PROFILE_SCREEN_PATH} clicked={isProfileScreen}>
             <PersonIcon size={28} clicked={isProfileScreen} />
             <IconName clicked={isProfileScreen}>
-               {t('reactSpotifyPlayer:sideBar.profileIconText')}
+               {t(`${i18nNavBarPath}profileIconText`)}
             </IconName>
-         </SideBarIcon>
-         <SideBarIcon to={HOME_SCREEN_PATH} clicked={isHomeScreen}>
-            <HomeIcon size={28} clicked={isHomeScreen} />
+         </NavBarIcon>
+         <NavBarIcon to={HOME_SCREEN_PATH} clicked={isHomeScreen}>
+            <HomeIcon
+               size={28}
+               clicked={isHomeScreen}
+               // style={{ fill: 'blue', size: 90 }}
+            />
+            {/* <IconController renderIcon={() => <AiFillHome />}></IconController> */}
             <IconName clicked={isHomeScreen}>
-               {t('reactSpotifyPlayer:sideBar.homeIconText')}
+               {t(`${i18nNavBarPath}homeIconText`)}
             </IconName>
-         </SideBarIcon>
+         </NavBarIcon>
 
-         <SideBarIcon to={YOUR_MUSIC_PATH} clicked={isYourMusicScreen}>
+         <NavBarIcon to={YOUR_MUSIC_PATH} clicked={isYourMusicScreen}>
             <MusicIcon size={28} clicked={isYourMusicScreen} />
             <IconName clicked={isYourMusicScreen}>
-               {t('reactSpotifyPlayer:sideBar.musicIconText')}
+               {t(`${i18nNavBarPath}musicIconText`)}
             </IconName>
-         </SideBarIcon>
+         </NavBarIcon>
 
-         <SideBarIcon
+         <NavBarIcon
             to={`/users/${userInformationModel?.id}/playlists/`}
             clicked={isPlaylistsScreen}
          >
             <PlaylistIcon size={28} clicked={isPlaylistsScreen} />
             <IconName clicked={isPlaylistsScreen}>
-               {t('reactSpotifyPlayer:sideBar.playlistIconText')}
+               {t(`${i18nNavBarPath}playlistIconText`)}
             </IconName>
-         </SideBarIcon>
+         </NavBarIcon>
       </>
-   )
-
-   const renderDesktopView = () => (
-      <DesktopSideBarContainer>
-         <Link to={HOME_SCREEN_PATH}>
-            <SpotifyImage
-               src='https://assets.ccbp.in/frontend/react-js/spotify-remix-login-music.png'
-               alt='website logo'
-            />
-         </Link>
-         <DesktopSideBarNavigation>
-            <SideBarIconsContainer>{renderIcons()}</SideBarIconsContainer>
-         </DesktopSideBarNavigation>
-      </DesktopSideBarContainer>
    )
 
    const showNavBarIcons = () => (
       <>
-         <MobileSideBarNavigation>
-            <SideBarIconsContainer>
+         <MobileNavBarNavigation>
+            <NavBarIconsContainer>
                {renderIcons()}
                <AiOutlineClose size={28} onClick={toggleShowIcons} />
-            </SideBarIconsContainer>
-         </MobileSideBarNavigation>
+            </NavBarIconsContainer>
+         </MobileNavBarNavigation>
       </>
    )
 
@@ -118,7 +104,7 @@ const SideBar = observer(() => {
          <Link to={HOME_SCREEN_PATH}>
             <SpotifyImage
                src='https://assets.ccbp.in/frontend/react-js/spotify-remix-login-music.png'
-               alt='website logo'
+               alt={t(`${i18nLogoAltTextPath}`)}
             />
          </Link>
          <HiOutlineMenu size={28} onClick={toggleShowIcons} />
@@ -126,9 +112,23 @@ const SideBar = observer(() => {
    )
 
    const renderMobileView = () => (
-      <MobileSideBarContainer>
+      <MobileNavBarContainer>
          {showIcons ? showNavBarIcons() : hideNavBarIcons()}
-      </MobileSideBarContainer>
+      </MobileNavBarContainer>
+   )
+
+   const renderDesktopView = () => (
+      <DesktopNavBarContainer>
+         <Link to={HOME_SCREEN_PATH}>
+            <SpotifyImage
+               src='https://assets.ccbp.in/frontend/react-js/spotify-remix-login-music.png'
+               alt={t(`${i18nLogoAltTextPath}`)}
+            />
+         </Link>
+         <DesktopNavBarNavigation>
+            <NavBarIconsContainer>{renderIcons()}</NavBarIconsContainer>
+         </DesktopNavBarNavigation>
+      </DesktopNavBarContainer>
    )
 
    return (
@@ -139,9 +139,9 @@ const SideBar = observer(() => {
    )
 })
 
-export default withRouter(SideBar)
+export default withRouter(NavBar)
 
-// <IconController renderIcon={(args)=><PhoneIcon {...props}/>}/>
+// <IconController renderIcon={(args)=><PhoneIcon {...args}/>}/>
 // <IconController renderIcon={(props)=><XiCOn {...props}/>}/>
 
 // <IconController renderIcon={(props)=><YIcon {...props}/>}/>

@@ -1,4 +1,4 @@
-import ImageModel from '../../modelsv2/ImageModel'
+import ImageModel from '../ImageModel'
 import { ImageType, SpotifyItemType } from '../../types'
 
 class SpotifyItemModel {

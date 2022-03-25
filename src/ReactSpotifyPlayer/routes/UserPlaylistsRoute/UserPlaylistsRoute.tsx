@@ -1,18 +1,17 @@
 import { API_FETCHING, API_SUCCESS } from '@ib/api-constants'
 import { observer } from 'mobx-react'
 import React, { useContext, useEffect } from 'react'
-import { USER_PLAYLISTS_PATH } from '../../../Common/constants/NavigationConstants'
-import {
-   MusicStoreContext,
-   UserStoreContext
-} from '../../../Common/stores/StoresContext'
+import { useTranslation } from 'react-i18next'
+
+import { MusicStoreContext } from '../../../Common/stores/StoresContext'
+
 import LoadingView from '../../components/LoadingView/LoadingView'
 import Playlists from '../../components/Playlists/Playlists'
+import useUserInformation from '../../hooks/useUserInformation'
 
 const UserPlaylistsRoute = observer(() => {
-   const { userInformationModel, getUserInformation } = useContext(
-      UserStoreContext
-   )
+   const { t } = useTranslation()
+   const userInformationModel = useUserInformation()
    const {
       userPlaylistsModel,
       getUserPlaylists,
@@ -20,10 +19,6 @@ const UserPlaylistsRoute = observer(() => {
    } = useContext(MusicStoreContext)
 
    useEffect(() => {
-      if (userInformationModel === null) {
-         getUserInformation()
-      }
-
       if (userInformationModel) {
          getUserPlaylists({ id: userInformationModel.id })
       }
@@ -35,10 +30,9 @@ const UserPlaylistsRoute = observer(() => {
          const path = `/users/${userInformationModel?.id}/playlists/`
          return (
             <Playlists
-               title='Your Playlists'
+               title={t(`reactSpotifyPlayer:userPlaylists.pageTitle`)}
                playlists={items}
                redirectPath={path}
-               backbuttonPath={path}
             />
          )
       }

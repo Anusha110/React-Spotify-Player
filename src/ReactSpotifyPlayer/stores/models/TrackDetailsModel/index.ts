@@ -1,32 +1,17 @@
-import { getMinuteSecondFormat } from '../../../../Common/utils/TimeUtils'
 import { ArtistType, FormattedAlbumType, TrackDetailsType } from '../../types'
 import AlbumModel from '../AlbumModel'
 import ArtistModel from '../ArtistModel'
+import BaseTrackModel from '../BaseTrackModel'
 
-class TrackDetailsModel {
-   id: string
-   name: string
-   artists: ArtistType[]
-   durationMs: string
-   previewUrl: string
+class TrackDetailsModel extends BaseTrackModel {
    trackNumber: number
+   artists: ArtistType[]
    album: FormattedAlbumType
 
    constructor(trackDetailsInfo: TrackDetailsType) {
-      const {
-         id,
-         name,
-         artists,
-         duration_ms,
-         preview_url,
-         track_number,
-         album
-      } = trackDetailsInfo
+      super(trackDetailsInfo)
+      const { track_number, artists, album } = trackDetailsInfo
 
-      this.id = id
-      this.name = name
-      this.durationMs = getMinuteSecondFormat(duration_ms)
-      this.previewUrl = preview_url
       this.trackNumber = track_number
       this.artists = artists.map(eachArtist => new ArtistModel(eachArtist))
       this.album = new AlbumModel(album)

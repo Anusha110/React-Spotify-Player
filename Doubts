@@ -50,12 +50,12 @@ Latest Doubts
 - Id Request Type regardless of where it's user_id or playlist_id or do we need separate ones
 - endpoints /catgroues/id/playlists?contry 
 didn't put slash at the end for everything, becuz there are query params after
+- doubt scroll bar
 
 
 
 
-
-
+- Use Model as type (instead of creating formatted type)
 
 
 

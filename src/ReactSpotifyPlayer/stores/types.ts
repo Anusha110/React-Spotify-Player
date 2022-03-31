@@ -1,3 +1,5 @@
+import SpotifyItemModel from './models/SpotifyItemModel'
+
 export interface IdRequestType {
    id: string
 }
@@ -25,6 +27,13 @@ export interface SpotifyItemType {
    id: string
    name: string
    images: ImageType[]
+}
+
+export interface BaseTrackType {
+   id: string
+   name: string
+   preview_url: string
+   duration_ms: number
 }
 
 // Get User Information
@@ -106,18 +115,12 @@ export interface BrowseCategoryItemType {
    icons: ImageType[]
 }
 
-export interface FormattedBrowseCategoryItemType {
-   id: string
-   name: string
-   images: ImageType[]
-}
-
 export interface GetBrowseCategoriesResponseType {
    categories: { items: BrowseCategoryItemType[] }
 }
 
 export interface FormattedGetBrowseCategoriesResponseType {
-   categories: FormattedBrowseCategoryItemType[]
+   categories: SpotifyItemType[]
 }
 
 // Get New Releases
@@ -141,14 +144,10 @@ export interface ArtistType {
    name: string
 }
 
-export interface TrackDetailsType {
+export interface TrackDetailsType extends BaseTrackType {
    artists: ArtistType[]
-   duration_ms: number
-   id: string
-   name: string
-   preview_url: string
-   track_number: number
    album: AlbumType
+   track_number: number
 }
 
 export interface TrackItemType {
@@ -156,10 +155,7 @@ export interface TrackItemType {
    track: TrackDetailsType
 }
 
-export interface GetPlaylistDetailsResponseType {
-   id: string
-   images: ImageType[]
-   name: string
+export interface GetPlaylistDetailsResponseType extends SpotifyItemType {
    owner: {
       display_name: string
    }
@@ -175,7 +171,7 @@ export interface FormattedAlbumType {
 
 export interface FormattedTrackDetailsType {
    artists: ArtistType[]
-   durationMs: string
+   duration: string
    id: string
    name: string
    previewUrl: string
@@ -188,10 +184,8 @@ export interface FormattedTrackItemType {
    track: FormattedTrackDetailsType
 }
 
-export interface FormattedGetPlaylistDetailsResponseType {
-   id: string
-   images: ImageType[]
-   name: string
+export interface FormattedGetPlaylistDetailsResponseType
+   extends SpotifyItemType {
    ownerDisplayName: string
    tracks: {
       items: FormattedTrackItemType[]
@@ -200,11 +194,7 @@ export interface FormattedGetPlaylistDetailsResponseType {
 
 // Get Album Details
 
-export interface AlbumTrackType {
-   id: string
-   name: string
-   preview_url: string
-   duration_ms: number
+export interface AlbumTrackType extends BaseTrackType {
    popularity: number
 }
 
@@ -216,30 +206,21 @@ export interface FormattedAlbumTrackType {
    popularity: number
 }
 
-export interface GetAlbumDetailsResponseType {
-   id: string
-   name: string
-   images: ImageType[]
+export interface GetAlbumDetailsResponseType extends SpotifyItemType {
    artists: ArtistType[]
    tracks: {
       items: AlbumTrackType[]
    }
 }
 
-export interface FormattedGetAlbumDetailsResponseType {
-   id: string
-   name: string
-   images: ImageType[]
+export interface FormattedGetAlbumDetailsResponseType extends SpotifyItemType {
    artists: ArtistType[]
    tracks: {
       items: FormattedAlbumTrackType[]
    }
 }
 
-export interface PlaylistItemType {
-   id: string
-   name: string
-   images: ImageType[]
+export interface PlaylistItemType extends SpotifyItemType {
    tracks: {
       total: number
    }
@@ -251,10 +232,7 @@ export interface GetCategoryPlaylistsResponseType {
    }
 }
 
-export interface FormattedPlaylistItemType {
-   id: string
-   name: string
-   images: ImageType[]
+export interface FormattedPlaylistItemType extends SpotifyItemType {
    totalTracks: number
 }
 

@@ -225,7 +225,7 @@ export interface FormattedAlbumType {
 
 export interface FormattedTrackDetailsType {
    artists: ArtistType[]
-   durationMs: string
+   duration: string
    id: string
    name: string
    previewUrl: string

@@ -65,7 +65,7 @@ const PlaylistDetailsRoute = observer(() => {
       },
       {
          Header: 'Time',
-         accessor: 'track.durationMs',
+         accessor: 'track.duration',
          width: '150px',
          maxWidth: '300px'
       },
@@ -148,7 +148,7 @@ const PlaylistDetailsRoute = observer(() => {
                      </MobileTrackArtist>
                   </MobileTrackText>
                   <MobileTrackDuration>
-                     {eachItem.track.durationMs}
+                     {eachItem.track.duration}
                   </MobileTrackDuration>
                </MobileTrackRow>
             ))}

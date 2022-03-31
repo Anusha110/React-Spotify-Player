@@ -12,7 +12,10 @@ const useUserInformation = () => {
       }
    }, [])
 
-   return userInformationModel
+   return userInformationModel // add
 }
 
 export default useUserInformation
+
+// return {useriNformation, status } etc.
+// checking conditionals before hand

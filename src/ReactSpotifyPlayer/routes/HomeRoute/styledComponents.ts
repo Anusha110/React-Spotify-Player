@@ -9,6 +9,7 @@ export const HomeContainer = styled.div`
    background-color: ${colors.blackNine};
    display: flex;
    flex-direction: row;
+   overflow: hidden;
 
    @media screen and (max-width: ${DESKTOP_MIN_WIDTH - 1}px) {
       display: flex;
